@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2019 Alexander Potashev <aspotashev@gmail.com>
+SPDX-FileCopyrightText: 2026 FlyingWolFox <49326973+FlyingWolFox@users.noreply.github.com>
+
+SPDX-License-Identifier: CC0-1.0
+-->
+
 KTimeTracker 5.1.0 (release date: 2026-01-18)
 --------
 - Fixed "Bug 415499 - Cannot build on latest Ubuntu" (Ubuntu 20.04 Focal Fossa).

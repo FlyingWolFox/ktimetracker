@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2019, 2021 Alexander Potashev <aspotashev@gmail.com>
+SPDX-FileCopyrightText: 2022 Matthias Mailänder <matthias@mailaender.name>
+SPDX-FileCopyrightText: 2026 FlyingWolFox <49326973+FlyingWolFox@users.noreply.github.com>
+
+SPDX-License-Identifier: CC0-1.0
+-->
 <component type="desktop">
   <id>org.kde.ktimetracker.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
