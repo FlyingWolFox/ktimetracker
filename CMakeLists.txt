@@ -7,7 +7,7 @@
 # SPDX-FileCopyrightText: 2024 Konstantin Avadov <konstantin.avadov@yahoo.com>
 # SPDX-FileCopyrightText: 2026 FlyingWolFox <49326973+FlyingWolFox@users.noreply.github.com>
 
-# SPDX-License-Identifier: BSD-3-Clause
+# SPDX-License-Identifier: BSD-2-Clause
 
 cmake_minimum_required(VERSION 3.16)
 set(APP_VERSION_NUMBER "5.1.0")
