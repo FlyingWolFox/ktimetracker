@@ -37,12 +37,18 @@ ecm_setup_version(${APP_VERSION_NUMBER}
 )
 
 set(QT_REQUIRED_VERSION "5.14.0")
-find_package(Qt5 ${QT_REQUIRED_VERSION} CONFIG REQUIRED DBus Gui Widgets Xml)
+find_package(Qt5 ${QT_REQUIRED_VERSION} CONFIG REQUIRED
+    DBus
+    Gui
+    Widgets
+    Xml
+)
 
 # TODO merge these two find_package(KF5) calls when KF 5.63.0 matures
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     Config
     ConfigWidgets
+    CoreAddons
     DBusAddons
     DocTools
     I18n
@@ -57,7 +63,6 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
 )
 find_package(KF5CalendarCore 4.82.0 CONFIG REQUIRED)
 
-add_subdirectory(pics)
 add_subdirectory(icons)
 add_subdirectory(doc)
 add_subdirectory(src)
