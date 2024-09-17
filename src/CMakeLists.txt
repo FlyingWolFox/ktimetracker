@@ -31,6 +31,7 @@ target_link_libraries(ktt-deps
     KF5::KIOCore
     KF5::JobWidgets
     KF5::IconThemes
+    KF5::Crash
 )
 
 if(NOT WIN32)

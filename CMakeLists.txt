@@ -60,6 +60,7 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     TextWidgets
     CalendarCore
     IconThemes
+    Crash
 )
 find_package(KF5CalendarCore 4.82.0 CONFIG REQUIRED)
 
@@ -78,6 +79,3 @@ install(FILES org.kde.ktimetracker.appdata.xml DESTINATION ${KDE_INSTALL_METAINF
 ki18n_install(po)
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
-
-include(KDEGitCommitHooks)
-kde_configure_git_pre_commit_hook(CHECKS JSON_SCHEMA CLANG_FORMAT)

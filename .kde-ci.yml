@@ -20,6 +20,7 @@ Dependencies:
     'frameworks/kcalendarcore': '@latest-kf5'
     'frameworks/kstatusnotifieritem': '@latest-kf5'
     'frameworks/kcmutils': '@latest-kf5'
+    'frameworks/kcrash': '@latest-kf5'
 
 Options:
   require-passing-tests-on: [ 'Linux', 'FreeBSD' ]
