@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-set(APP_VERSION_NUMBER "5.0.1")
+set(APP_VERSION_NUMBER "5.1.0")
 project(ktimetracker VERSION ${APP_VERSION_NUMBER})
 
 # Older versions have this bug: https://bugs.kde.org/show_bug.cgi?id=451946

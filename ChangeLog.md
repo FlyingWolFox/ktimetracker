@@ -1,3 +1,24 @@
+KTimeTracker 5.1.0 (release date: 2026-01-18)
+--------
+- Fixed "Bug 415499 - Cannot build on latest Ubuntu" (Ubuntu 20.04 Focal Fossa).
+  Downgraded KCalCore/KCalendarCore dependency version.
+- Fixed "Bug 417988 - Columns displayed do not match configuration"
+- Fixed time formatting in "Hours:Minutes" mode on 32 bit architectures
+- Fixed crashes when trying to open a corrupted .ics file
+- Fixed column time sorting. Sorting is now done numerically instead of lexicographically
+- Added the option to display the current task in the window title
+- Added the option to display the currently active tasks and the session times in
+  the window title instead of the currently opened ical file.
+- Exposed startNewSession via dbus
+- Added a new export type: CSV log of all entries
+  The new export type exports all entries, or all entries in a given time
+  period if specified, in CSV format.
+- Updated all icons in the app with the new Plasma design
+- Added translations
+- Removed file:// prefix from the ical file path shown in the window title
+- Fixed a possible crash related to idle time detection
+- Made some performance optimizations
+
 KTimeTracker 5.0.1 (release date: 2019-12-21)
 --------
 - Fixed "Bug 415387 - Application icon is not installed"
