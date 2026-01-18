@@ -1,4 +1,8 @@
-KTimeTracker 5.0 (release date: ?)
+KTimeTracker 5.0.1 (release date: 2019-12-21)
+--------
+- Fixed "Bug 415387 - Application icon is not installed"
+
+KTimeTracker 5.0 (release date: 2019-12-19)
 --------
 - Ported to KDE Frameworks 5
 - Nearly all the code touched by refactoring
