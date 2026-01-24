@@ -4,20 +4,22 @@
 Dependencies:
 - 'on': ['@all']
   'require':
-    'frameworks/extra-cmake-modules': '@stable'
-    'frameworks/kdoctools': '@stable'
-    'frameworks/kio': '@stable'
-    'frameworks/ki18n': '@stable'
-    'frameworks/kconfig': '@stable'
-    'frameworks/kconfigwidgets': '@stable'
-    'frameworks/kdbusaddons': '@stable'
-    'frameworks/kidletime': '@stable'
-    'frameworks/kjobwidgets': '@stable'
-    'frameworks/knotifications': '@stable'
-    'frameworks/kwindowsystem': '@stable'
-    'frameworks/kxmlgui': '@stable'
-    'frameworks/ktextwidgets': '@stable'
-    'frameworks/kcalendarcore': '@stable'
+    'frameworks/extra-cmake-modules': '@latest-kf5'
+    'frameworks/kdoctools': '@latest-kf5'
+    'frameworks/kio': '@latest-kf5'
+    'frameworks/ki18n': '@latest-kf5'
+    'frameworks/kconfig': '@latest-kf5'
+    'frameworks/kconfigwidgets': '@latest-kf5'
+    'frameworks/kdbusaddons': '@latest-kf5'
+    'frameworks/kidletime': '@latest-kf5'
+    'frameworks/kjobwidgets': '@latest-kf5'
+    'frameworks/knotifications': '@latest-kf5'
+    'frameworks/kwindowsystem': '@latest-kf5'
+    'frameworks/kxmlgui': '@latest-kf5'
+    'frameworks/ktextwidgets': '@latest-kf5'
+    'frameworks/kcalendarcore': '@latest-kf5'
+    'frameworks/kstatusnotifieritem': '@latest-kf5'
+    'frameworks/kcmutils': '@latest-kf5'
 
 Options:
   require-passing-tests-on: [ 'Linux', 'FreeBSD' ]

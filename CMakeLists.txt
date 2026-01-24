@@ -3,7 +3,7 @@ set(APP_VERSION_NUMBER "5.1.0")
 project(ktimetracker VERSION ${APP_VERSION_NUMBER})
 
 # Older versions have this bug: https://bugs.kde.org/show_bug.cgi?id=451946
-set(KF5_MIN_VERSION "5.93.0")
+set(KF5_MIN_VERSION "5.101.0")
 
 find_package(ECM ${KF5_MIN_VERSION} CONFIG REQUIRED)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
@@ -40,6 +40,7 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     WindowSystem
     XmlGui
     TextWidgets
+    CalendarCore
 )
 find_package(KF5CalendarCore 4.82.0 CONFIG REQUIRED)
 

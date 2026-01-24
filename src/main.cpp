@@ -64,7 +64,7 @@ QUrl getFileUrl(const QCommandLineParser &parser)
         QString result =
             QString(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("ktimetracker/ktimetracker.ics")));
         if (result.isEmpty()) {
-            result = QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QLatin1Char('/')
+            result = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + QLatin1Char('/')
                 + QStringLiteral("ktimetracker.ics");
 
             QFileInfo fileInfo(result);
