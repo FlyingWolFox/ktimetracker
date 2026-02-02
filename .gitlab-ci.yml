@@ -8,4 +8,4 @@ include:
       - /gitlab-templates/linux-qt5.yml
       - /gitlab-templates/reuse-lint.yml
       #- /gitlab-templates/freebsd-qt5.yml
-      #- /gitlab-templates/windows-qt5.yml
+      - /gitlab-templates/windows-qt5.yml

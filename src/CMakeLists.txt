@@ -22,7 +22,6 @@ target_link_libraries(ktt-deps
     KF5::DBusAddons
     KF5::XmlGui
     KF5::CalendarCore
-    KF5::WindowSystem
     KF5::ConfigGui
     KF5::IdleTime
     KF5::ConfigWidgets
@@ -30,7 +29,15 @@ target_link_libraries(ktt-deps
     KF5::TextWidgets
     KF5::KIOCore
     KF5::JobWidgets
+    KF5::IconThemes
 )
+
+if(NOT WIN32)
+    target_link_libraries(ktt-deps
+        INTERFACE
+        KF5::WindowSystem
+    )
+endif()
 
 kconfig_add_kcfg_files(ktt-general settings/ktimetracker.kcfgc)
 

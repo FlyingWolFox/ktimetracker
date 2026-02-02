@@ -56,12 +56,18 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     JobWidgets
     KIO
     Notifications
-    WindowSystem
     XmlGui
     TextWidgets
     CalendarCore
+    IconThemes
 )
 find_package(KF5CalendarCore 4.82.0 CONFIG REQUIRED)
+
+if(NOT WIN32)
+    find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
+        WindowSystem
+    )
+endif()
 
 add_subdirectory(icons)
 add_subdirectory(doc)
@@ -72,3 +78,6 @@ install(FILES org.kde.ktimetracker.appdata.xml DESTINATION ${KDE_INSTALL_METAINF
 ki18n_install(po)
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
+
+include(KDEGitCommitHooks)
+kde_configure_git_pre_commit_hook(CHECKS JSON_SCHEMA CLANG_FORMAT)

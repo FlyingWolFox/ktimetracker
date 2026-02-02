@@ -17,6 +17,12 @@
 #include <KAboutData>
 #include <KDBusService>
 #include <KLocalizedString>
+#include <KIconTheme>
+
+#define HAVE_STYLE_MANAGER __has_include(<KStyleManager>)
+#if HAVE_STYLE_MANAGER
+#include <KStyleManager>
+#endif
 
 #include "ktimetracker-version.h"
 #include "ktt_debug.h"
@@ -69,6 +75,9 @@ int main(int argc, char *argv[])
 
     QApplication app(argc, argv);
     Q_INIT_RESOURCE(ktimetracker);
+#if HAVE_STYLE_MANAGER
+    KStyleManager::initStyle();
+#endif
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     // Force Breeze theme on Windows.
