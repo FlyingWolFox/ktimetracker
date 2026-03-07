@@ -1,22 +1,8 @@
 /*
- * Copyright (c) 2019 Alexander Potashev <aspotashev@gmail.com>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License or (at your option) version 3 or any later version
- * accepted by the membership of KDE e.V. (or its successor approved
- * by the membership of KDE e.V.), which shall act as a proxy
- * defined in Section 14 of version 3 of the license.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2019 Alexander Potashev <aspotashev@gmail.com>
+
+    SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+*/
 
 #include "export.h"
 
@@ -36,7 +22,7 @@ QString exportToString(ProjectModel *model, Task *currentTask, const ReportCrite
     case ReportCriteria::CSVTotalsExport:
         return exportCSVToString(model->tasksModel(), rc);
     case ReportCriteria::CSVHistoryExport:
-        return exportCSVHistoryToString(model, rc);
+        return exportCSVHistoryToString(model, currentTask, rc);
     case ReportCriteria::CSVEventLogExport:
         return exportCSVEventLogToString(model, rc);
     case ReportCriteria::TextTotalsExport:
@@ -73,8 +59,8 @@ QString writeExport(const QString &data, const QUrl &url)
         }
     } else {
         // use remote file
-        auto* const job = KIO::storedPut(data.toUtf8(), url, -1);
-        //KJobWidgets::setWindow(job, &dialog); // TODO: add progress dialog
+        auto *const job = KIO::storedPut(data.toUtf8(), url, -1);
+        // KJobWidgets::setWindow(job, &dialog); // TODO: add progress dialog
         if (!job->exec()) {
             err = QString::fromLatin1("Could not upload");
         }

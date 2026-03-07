@@ -1,24 +1,9 @@
 /*
- * Copyright (C) 2009 by Laurent Montel <montel@kde.org>
- * Copyright (C) 2019  Alexander Potashev <aspotashev@gmail.com>
- *
- *   This program is free software; you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation; either version 2 of the License, or
- *   (at your option) any later version.
- *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License along
- *   with this program; if not, write to the
- *      Free Software Foundation, Inc.
- *      51 Franklin Street, Fifth Floor
- *      Boston, MA  02110-1301  USA.
- *
- */
+    SPDX-FileCopyrightText: 2009 Laurent Montel <montel@kde.org>
+    SPDX-FileCopyrightText: 2019 Alexander Potashev <aspotashev@gmail.com>
+
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #include "ktimetrackerconfigdialog.h"
 
@@ -33,7 +18,7 @@
 KTimeTrackerBehaviorConfig::KTimeTrackerBehaviorConfig(QWidget *parent)
     : KCModule(parent)
 {
-    auto *lay = new QHBoxLayout(this);
+    auto *lay = new QHBoxLayout(widget());
     auto *behaviorUi = new Ui::BehaviorPage;
     auto *behaviorPage = new QWidget;
     behaviorUi->setupUi(behaviorPage);
@@ -45,7 +30,7 @@ KTimeTrackerBehaviorConfig::KTimeTrackerBehaviorConfig(QWidget *parent)
 KTimeTrackerStorageConfig::KTimeTrackerStorageConfig(QWidget *parent)
     : KCModule(parent)
 {
-    auto *lay = new QHBoxLayout(this);
+    auto *lay = new QHBoxLayout(widget());
     auto *storageUi = new Ui::StoragePage;
     auto *storagePage = new QWidget;
     storageUi->setupUi(storagePage);
@@ -57,7 +42,7 @@ KTimeTrackerStorageConfig::KTimeTrackerStorageConfig(QWidget *parent)
 KTimeTrackerDisplayConfig::KTimeTrackerDisplayConfig(QWidget *parent)
     : KCModule(parent)
 {
-    auto *lay = new QHBoxLayout(this);
+    auto *lay = new QHBoxLayout(widget());
     auto *displayUi = new Ui::DisplayPage;
     auto *displayPage = new QWidget;
     displayUi->setupUi(displayPage);
@@ -65,3 +50,5 @@ KTimeTrackerDisplayConfig::KTimeTrackerDisplayConfig(QWidget *parent)
     addConfig(KTimeTrackerSettings::self(), displayPage);
     load();
 }
+
+#include "moc_ktimetrackerconfigdialog.cpp"

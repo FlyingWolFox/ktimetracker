@@ -1,36 +1,21 @@
 /*
- * Copyright (C) 1997 by Stephan Kulow <coolo@kde.org>
- * Copyright (C) 2019  Alexander Potashev <aspotashev@gmail.com>
- *
- *   This program is free software; you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation; either version 2 of the License, or
- *   (at your option) any later version.
- *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License along
- *   with this program; if not, write to the
- *      Free Software Foundation, Inc.
- *      51 Franklin Street, Fifth Floor
- *      Boston, MA  02110-1301  USA.
- *
- */
+    SPDX-FileCopyrightText: 1997 Stephan Kulow <coolo@kde.org>
+    SPDX-FileCopyrightText: 2019 Alexander Potashev <aspotashev@gmail.com>
+
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #include "task.h"
 
-#include <KCalCore/CalFormat>
+#include <KCalendarCore/CalFormat>
 
+#include "base/ktimetrackerutility.h"
+#include "base/timetrackerstorage.h"
 #include "ktimetracker.h"
-#include "ktimetrackerutility.h"
 #include "ktt_debug.h"
 #include "model/eventsmodel.h"
 #include "model/projectmodel.h"
 #include "model/tasksmodel.h"
-#include "timetrackerstorage.h"
 
 static const QByteArray eventAppName = QByteArray("ktimetracker");
 
@@ -52,10 +37,10 @@ Task::Task(const QString &taskName,
 
     init(taskName, taskDescription, minutes, sessionTime, QStringLiteral(), desktops, 0, 0);
 
-    m_uid = KCalCore::CalFormat::createUniqueId();
+    m_uid = KCalendarCore::CalFormat::createUniqueId();
 }
 
-Task::Task(const KCalCore::Todo::Ptr &todo, ProjectModel *projectModel)
+Task::Task(const KCalendarCore::Todo::Ptr &todo, ProjectModel *projectModel)
     : TasksModelItem(projectModel->tasksModel(), nullptr)
     , m_projectModel(projectModel)
 {
@@ -70,15 +55,7 @@ Task::Task(const KCalCore::Todo::Ptr &todo, ProjectModel *projectModel)
     int priority = 0;
     DesktopList desktops;
 
-    parseIncidence(todo,
-                   minutes,
-                   sessionTime,
-                   sessionStartTiMe,
-                   name,
-                   description,
-                   desktops,
-                   percent_complete,
-                   priority);
+    parseIncidence(todo, sessionStartTiMe, name, description, desktops, percent_complete, priority);
     init(name, description, minutes, sessionTime, sessionStartTiMe, desktops, percent_complete, priority);
 }
 
@@ -96,6 +73,19 @@ int Task::depth()
 
     qCDebug(KTT_LOG) << "Leaving function. depth is:" << res;
     return res;
+}
+
+QList<Task *> Task::selfAndDescendants() const
+{
+    QList<Task *> out;
+    out.append(const_cast<Task *>(this));
+    for (int i = 0; i < childCount(); ++i) {
+        Task *subTask = dynamic_cast<Task *>(child(i));
+        if (subTask) {
+            out += subTask->selfAndDescendants();
+        }
+    }
+    return out;
 }
 
 void Task::init(const QString &taskName,
@@ -143,7 +133,7 @@ void Task::setRunning(bool on, const QDateTime &when)
             m_lastStart = when;
             qCDebug(KTT_LOG) << "task has been started for " << when;
 
-//            m_projectModel->eventsModel()->startTask(this, when);
+            //            m_projectModel->eventsModel()->startTask(this, when);
             m_projectModel->eventsModel()->startTask(this);
         } else {
             m_projectModel->eventsModel()->stopTask(this, when);
@@ -378,7 +368,7 @@ QString Task::fullName() const
     }
 }
 
-KCalCore::Todo::Ptr Task::asTodo(const KCalCore::Todo::Ptr &todo) const
+KCalendarCore::Todo::Ptr Task::asTodo(const KCalendarCore::Todo::Ptr &todo) const
 {
     Q_ASSERT(todo != nullptr);
 
@@ -392,8 +382,6 @@ KCalCore::Todo::Ptr Task::asTodo(const KCalCore::Todo::Ptr &todo) const
     // time the file is opened.
     // todo->setDtStart( current );
 
-    todo->setCustomProperty(eventAppName, QByteArray("totalTaskTime"), QString::number(m_time));
-    todo->setCustomProperty(eventAppName, QByteArray("totalSessionTime"), QString::number(m_sessionTime));
     todo->setCustomProperty(eventAppName, QByteArray("sessionStartTiMe"), m_sessionStartTime.toString());
     qDebug() << "m_sessionStartTime=" << m_sessionStartTime.toString();
 
@@ -413,9 +401,7 @@ KCalCore::Todo::Ptr Task::asTodo(const KCalCore::Todo::Ptr &todo) const
     return todo;
 }
 
-bool Task::parseIncidence(const KCalCore::Incidence::Ptr &incident,
-                          int64_t &minutes,
-                          int64_t &sessionMinutes,
+bool Task::parseIncidence(const KCalendarCore::Incidence::Ptr &incident,
                           QString &sessionStartTiMe,
                           QString &name,
                           QString &description,
@@ -429,18 +415,6 @@ bool Task::parseIncidence(const KCalCore::Incidence::Ptr &incident,
     description = incident->description();
     m_uid = incident->uid();
 
-    ok = false;
-    minutes = getCustomProperty(incident, QStringLiteral("totalTaskTime")).toInt(&ok);
-    if (!ok) {
-        minutes = 0;
-    }
-
-    ok = false;
-    sessionMinutes = getCustomProperty(incident, QStringLiteral("totalSessionTime")).toInt(&ok);
-    if (!ok) {
-        sessionMinutes = 0;
-    }
-
     sessionStartTiMe = getCustomProperty(incident, QStringLiteral("sessionStartTiMe"));
 
     QString desktopList = getCustomProperty(incident, QStringLiteral("desktopList"));
@@ -453,7 +427,7 @@ bool Task::parseIncidence(const KCalCore::Incidence::Ptr &incident,
             desktops.push_back(desktopInt);
         }
     }
-    percent_complete = incident.staticCast<KCalCore::Todo>()->percentComplete();
+    percent_complete = incident.staticCast<KCalendarCore::Todo>()->percentComplete();
     priority = incident->priority();
     return true;
 }
@@ -562,7 +536,7 @@ void Task::startNewSession()
     m_sessionStartTime = QDateTime::currentDateTime();
 }
 
-//BEGIN Properties
+// BEGIN Properties
 QString Task::uid() const
 {
     return m_uid;
@@ -602,4 +576,4 @@ DesktopList Task::desktops() const
 {
     return m_desktops;
 }
-//END
+// END

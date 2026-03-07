@@ -1,33 +1,19 @@
 /*
- * Copyright (c) 2019 Alexander Potashev <aspotashev@gmail.com>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License or (at your option) version 3 or any later version
- * accepted by the membership of KDE e.V. (or its successor approved
- * by the membership of KDE e.V.), which shall act as a proxy
- * defined in Section 14 of version 3 of the license.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2019 Alexander Potashev <aspotashev@gmail.com>
+
+    SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+*/
 
 #include "event.h"
 
 #include <KLocalizedString>
 
-#include "ktimetrackerutility.h"
+#include "base/ktimetrackerutility.h"
 #include "ktt_debug.h"
 
 static const QByteArray eventAppName = QByteArray("ktimetracker");
 
-Event::Event(const KCalCore::Event::Ptr &event)
+Event::Event(const KCalendarCore::Event::Ptr &event)
     : m_summary(event->summary())
     , m_dtStart(event->dtStart())
     , m_dtEnd(event->hasEndDate() ? event->dtEnd() : QDateTime())
@@ -144,7 +130,7 @@ int64_t Event::duration() const
     return m_duration;
 }
 
-KCalCore::Event::Ptr Event::asCalendarEvent(const KCalCore::Event::Ptr &event) const
+KCalendarCore::Event::Ptr Event::asCalendarEvent(const KCalendarCore::Event::Ptr &event) const
 {
     Q_ASSERT(event != nullptr);
 

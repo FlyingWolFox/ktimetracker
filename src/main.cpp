@@ -1,24 +1,9 @@
 /*
- * Copyright (C) 1997 by Stephan Kulow <coolo@kde.org>
- * Copyright (C) 2019  Alexander Potashev <aspotashev@gmail.com>
- *
- *   This program is free software; you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation; either version 2 of the License, or
- *   (at your option) any later version.
- *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License along
- *   with this program; if not, write to the
- *      Free Software Foundation, Inc.
- *      51 Franklin Street, Fifth Floor
- *      Boston, MA  02110-1301  USA.
- *
- */
+    SPDX-FileCopyrightText: 1997 Stephan Kulow <coolo@kde.org>
+    SPDX-FileCopyrightText: 2019 Alexander Potashev <aspotashev@gmail.com>
+
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #include <QApplication>
 #include <QCommandLineOption>
@@ -30,15 +15,20 @@
 #include <QStandardPaths>
 
 #include <KAboutData>
+#include <KCrash>
 #include <KDBusService>
+#include <KIconTheme>
 #include <KLocalizedString>
 
-#include "desktoplist.h"
+#define HAVE_STYLE_MANAGER __has_include(<KStyleManager>)
+#if HAVE_STYLE_MANAGER
+#include <KStyleManager>
+#endif
+
+#include "backports/kicontheme.h"
+#include "base/mainwindow.h"
 #include "ktimetracker-version.h"
 #include "ktt_debug.h"
-#include "mainwindow.h"
-#include "model/task.h"
-#include "timetrackerstorage.h"
 
 // Deliver the path/URL to the iCalendar file to be used
 QUrl getFileUrl(const QCommandLineParser &parser)
@@ -61,11 +51,9 @@ QUrl getFileUrl(const QCommandLineParser &parser)
         return url;
     } else {
         // customFile is not given as parameter
-        QString result =
-            QString(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("ktimetracker/ktimetracker.ics")));
+        QString result = QString(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("ktimetracker/ktimetracker.ics")));
         if (result.isEmpty()) {
-            result = QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QLatin1Char('/')
-                + QStringLiteral("ktimetracker.ics");
+            result = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + QLatin1Char('/') + QStringLiteral("ktimetracker.ics");
 
             QFileInfo fileInfo(result);
             QDir().mkpath(fileInfo.absolutePath());
@@ -85,8 +73,12 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
 
+    KIconThemeBackport::initTheme();
     QApplication app(argc, argv);
     Q_INIT_RESOURCE(ktimetracker);
+#if HAVE_STYLE_MANAGER
+    KStyleManager::initStyle();
+#endif
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     // Force Breeze theme on Windows.
@@ -108,31 +100,19 @@ int main(int argc, char *argv[])
     aboutData.addAuthor(i18nc("@info:credit", "Alexander Potashev"),
                         i18nc("@info:credit", "Current Maintainer (since 2019)"),
                         QStringLiteral("aspotashev@gmail.com"));
-    aboutData.addAuthor(i18nc("@info:credit", "Thorsten Stärk"),
-                        i18nc("@info:credit", "Maintainer (2006-2012)"),
-                        QStringLiteral("kde@staerk.de"));
+    aboutData.addAuthor(i18nc("@info:credit", "Thorsten Stärk"), i18nc("@info:credit", "Maintainer (2006-2012)"), QStringLiteral("kde@staerk.de"));
     aboutData.addAuthor(i18nc("@info:credit", "Mark Bucciarelli"),
                         i18nc("@info:credit", "Maintainer (2005-2006)"),
                         QStringLiteral("mark@hubcapconsulting.com"));
-    aboutData.addAuthor(i18nc("@info:credit", "Jesper Pedersen"),
-                        i18nc("@info:credit", "Maintainer (2000-2005)"),
-                        QStringLiteral("blackie@kde.org"));
-    aboutData.addAuthor(i18nc("@info:credit", "Sirtaj Singh Kang"),
-                        i18nc("@info:credit", "Original Author"),
-                        QStringLiteral("taj@kde.org"));
-    aboutData.addAuthor(i18nc("@info:credit", "Mathias Soeken"),
-                        i18nc("@info:credit", "Developer (in 2007)"),
-                        QStringLiteral("msoeken@tzi.de"));
-    aboutData.addAuthor(i18nc("@info:credit", "Kalle Dalheimer"),
-                        i18nc("@info:credit", "Developer (1999-2000)"),
-                        QStringLiteral("kalle@kde.org"));
-    aboutData.addAuthor(i18nc("@info:credit", "Allen Winter"),
-                        i18nc("@info:credit", "Developer"),
-                        QStringLiteral("winter@kde.org"));
-    aboutData.addAuthor(i18nc("@info:credit", "David Faure"),
-                        i18nc("@info:credit", "Developer"),
-                        QStringLiteral("faure@kde.org"));
+    aboutData.addAuthor(i18nc("@info:credit", "Jesper Pedersen"), i18nc("@info:credit", "Maintainer (2000-2005)"), QStringLiteral("blackie@kde.org"));
+    aboutData.addAuthor(i18nc("@info:credit", "Sirtaj Singh Kang"), i18nc("@info:credit", "Original Author"), QStringLiteral("taj@kde.org"));
+    aboutData.addAuthor(i18nc("@info:credit", "Mathias Soeken"), i18nc("@info:credit", "Developer (in 2007)"), QStringLiteral("msoeken@tzi.de"));
+    aboutData.addAuthor(i18nc("@info:credit", "Kalle Dalheimer"), i18nc("@info:credit", "Developer (1999-2000)"), QStringLiteral("kalle@kde.org"));
+    aboutData.addAuthor(i18nc("@info:credit", "Allen Winter"), i18nc("@info:credit", "Developer"), QStringLiteral("winter@kde.org"));
+    aboutData.addAuthor(i18nc("@info:credit", "David Faure"), i18nc("@info:credit", "Developer"), QStringLiteral("faure@kde.org"));
     KAboutData::setApplicationData(aboutData);
+
+    KCrash::initialize();
 
     Q_INIT_RESOURCE(icons);
     QIcon::setThemeSearchPaths(QStringList() << QStringLiteral(":/icons"));
@@ -150,11 +130,11 @@ int main(int argc, char *argv[])
 
     const QUrl &url = getFileUrl(parser);
 
-//        if (!KUniqueApplication::start()) {
-//            qCDebug(KTT_LOG) << "Other instance is already running, exiting!";
-//            return 0;
-//        }
-//        KUniqueApplication myApp;
+    //        if (!KUniqueApplication::start()) {
+    //            qCDebug(KTT_LOG) << "Other instance is already running, exiting!";
+    //            return 0;
+    //        }
+    //        KUniqueApplication myApp;
     QPointer<MainWindow> mainWindow = new MainWindow(url);
     mainWindow->show();
 
@@ -166,6 +146,12 @@ int main(int argc, char *argv[])
             qCWarning(KTT_LOG) << "Unknown class " << className << " in session saved data!";
         }
     }
+
+    QObject::connect(&dbusService, &KDBusService::activateRequested, mainWindow, [mainWindow] {
+        mainWindow->show();
+        mainWindow->raise();
+        mainWindow->activateWindow();
+    });
 
     return app.exec();
 }

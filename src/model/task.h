@@ -1,33 +1,19 @@
 /*
- * Copyright (C) 1997 by Stephan Kulow <coolo@kde.org>
- * Copyright (C) 2019  Alexander Potashev <aspotashev@gmail.com>
- *
- *   This program is free software; you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation; either version 2 of the License, or
- *   (at your option) any later version.
- *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License along
- *   with this program; if not, write to the
- *      Free Software Foundation, Inc.
- *      51 Franklin Street, Fifth Floor
- *      Boston, MA  02110-1301  USA.
- *
- */
+    SPDX-FileCopyrightText: 1997 Stephan Kulow <coolo@kde.org>
+    SPDX-FileCopyrightText: 2019 Alexander Potashev <aspotashev@gmail.com>
+
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef KTIMETRACKER_TASK_H
 #define KTIMETRACKER_TASK_H
 
 #include <QDateTime>
+#include <QList>
 
-#include <KCalCore/Todo>
+#include <KCalendarCore/Todo>
 
-#include "desktoplist.h" // Required b/c DesktopList is a typedef not a class.
+#include "base/desktoplist.h" // Required b/c DesktopList is a typedef not a class.
 #include "model/tasksmodelitem.h"
 
 class TimeTrackerStorage;
@@ -61,12 +47,15 @@ public:
          const DesktopList &desktops,
          ProjectModel *projectModel,
          Task *parentTask);
-    Task(const KCalCore::Todo::Ptr &todo, ProjectModel *projectModel);
+    Task(const KCalendarCore::Todo::Ptr &todo, ProjectModel *projectModel);
 
     /* destructor */
     ~Task() override;
 
-    Task* parentTask() const { return dynamic_cast<Task *>(TasksModelItem::parent()); }
+    Task *parentTask() const
+    {
+        return dynamic_cast<Task *>(TasksModelItem::parent());
+    }
 
     /** Return unique iCalendar Todo ID for this task. */
     QString uid() const;
@@ -151,12 +140,18 @@ public:
     /** Sets the total time, does not change the parent's total time.
       This means the parent's total time can run out of sync.
       */
-    void setTotalTime(int64_t minutes) { m_totalTime = minutes; }
+    void setTotalTime(int64_t minutes)
+    {
+        m_totalTime = minutes;
+    }
 
     /** Sets the total session time, does not change the parent's total session time.
       This means the parent's total session time can run out of sync.
       */
-    void setTotalSessionTime(int64_t minutes) { m_totalSessionTime = minutes; }
+    void setTotalSessionTime(int64_t minutes)
+    {
+        m_totalSessionTime = minutes;
+    }
 
     /** A recursive function to calculate the total time/session time of a task. */
     void recalculateTotalTimesSubtree();
@@ -178,11 +173,23 @@ public:
     void resetTimes();
 
     /** @return time in minutes */
-    int64_t time() const { return m_time; }
+    int64_t time() const
+    {
+        return m_time;
+    }
     /** @return total time in minutes */
-    int64_t totalTime() const { return m_totalTime; }
-    int64_t sessionTime() const { return m_sessionTime; }
-    int64_t totalSessionTime() const { return m_totalSessionTime; }
+    int64_t totalTime() const
+    {
+        return m_totalTime;
+    }
+    int64_t sessionTime() const
+    {
+        return m_sessionTime;
+    }
+    int64_t totalSessionTime() const
+    {
+        return m_totalSessionTime;
+    }
     QDateTime sessionStartTiMe() const;
 
     /**
@@ -261,9 +268,7 @@ public:
      *  You read the todo, extract its custom properties (like session time)
      *  and use these data to initialize the task.
      */
-    bool parseIncidence(const KCalCore::Incidence::Ptr &,
-                        int64_t &minutes,
-                        int64_t &sessionMinutes,
+    bool parseIncidence(const KCalendarCore::Incidence::Ptr &,
                         QString &sessionStartTiMe,
                         QString &name,
                         QString &description,
@@ -274,10 +279,16 @@ public:
     /**
      *  Load the todo passed in with this tasks info.
      */
-    KCalCore::Todo::Ptr asTodo(const KCalCore::Todo::Ptr &todo) const;
+    KCalendarCore::Todo::Ptr asTodo(const KCalendarCore::Todo::Ptr &todo) const;
 
     /** tells you whether this task is the root of the task tree */
-    bool isRoot() const { return !parentTask(); }
+    bool isRoot() const
+    {
+        return !parentTask();
+    }
+
+    /** This task and all its descendant tasks. */
+    QList<Task *> selfAndDescendants() const;
 
     /** remove Task with all it's children
      * Removes task as well as all event history for this task.

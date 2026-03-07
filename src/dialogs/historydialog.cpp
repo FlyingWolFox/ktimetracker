@@ -1,24 +1,9 @@
 /*
- * Copyright (C) 2007 by Thorsten Staerk and Mathias Soeken <msoeken@tzi.de>
- * Copyright (C) 2019  Alexander Potashev <aspotashev@gmail.com>
- *
- *   This program is free software; you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation; either version 2 of the License, or
- *   (at your option) any later version.
- *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License along
- *   with this program; if not, write to the
- *      Free Software Foundation, Inc.
- *      51 Franklin Street, Fifth Floor
- *      Boston, MA  02110-1301  USA.
- *
- */
+    SPDX-FileCopyrightText: 2007 Thorsten Staerk and Mathias Soeken <msoeken@tzi.de>
+    SPDX-FileCopyrightText: 2019 Alexander Potashev <aspotashev@gmail.com>
+
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #include "historydialog.h"
 
@@ -30,7 +15,6 @@
 #include <KMessageBox>
 #include <KStandardGuiItem>
 
-#include "file/filecalendar.h"
 #include "ktt_debug.h"
 #include "model/event.h"
 #include "model/eventsmodel.h"
@@ -48,9 +32,9 @@ public:
     {
     }
 
-    QWidget* createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex & /*index*/) const override
+    QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex & /*index*/) const override
     {
-        auto* editor = new QDateTimeEdit(parent);
+        auto *editor = new QDateTimeEdit(parent);
         editor->setAutoFillBackground(true);
         editor->setPalette(option.palette);
         editor->setBackgroundRole(QPalette::Window);
@@ -59,11 +43,11 @@ public:
 
     void setEditorData(QWidget *editor, const QModelIndex &index) const override
     {
-        QDateTime dateTime = QDateTime::fromString(index.model()->data(index, Qt::DisplayRole).toString(),
-                                                   HistoryDialog::dateTimeFormat);
-        auto *dateTimeWidget = dynamic_cast<QDateTimeEdit *>(editor);
+        QDateTime dateTime = QDateTime::fromString(index.model()->data(index, Qt::DisplayRole).toString(), HistoryDialog::dateTimeFormat);
+        auto *dateTimeWidget = qobject_cast<QDateTimeEdit *>(editor);
         if (dateTimeWidget) {
             dateTimeWidget->setDateTime(dateTime);
+            dateTimeWidget->setDisplayFormat(HistoryDialog::dateTimeFormat);
         } else {
             qCWarning(KTT_LOG) << "Cast to QDateTimeEdit failed";
         }
@@ -71,7 +55,7 @@ public:
 
     void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const override
     {
-        auto *dateTimeWidget = dynamic_cast<QDateTimeEdit *>(editor);
+        auto *dateTimeWidget = qobject_cast<QDateTimeEdit *>(editor);
         if (dateTimeWidget) {
             QDateTime dateTime = dateTimeWidget->dateTime();
             model->setData(index, dateTime.toString(HistoryDialog::dateTimeFormat), Qt::EditRole);
@@ -80,9 +64,7 @@ public:
         }
     }
 
-    void updateEditorGeometry(QWidget *editor,
-                              const QStyleOptionViewItem &option,
-                              const QModelIndex & /*index*/) const override
+    void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex & /*index*/) const override
     {
         editor->setGeometry(option.rect);
     }
@@ -160,8 +142,8 @@ QString HistoryDialog::listAllEvents()
     m_ui.historytablewidget->resizeColumnsToContents();
     m_ui.historytablewidget->setColumnWidth(1, 300);
     m_ui.historytablewidget->setColumnWidth(2, 300);
-    setMinimumSize(m_ui.historytablewidget->columnWidth(0) + m_ui.historytablewidget->columnWidth(1)
-                       + m_ui.historytablewidget->columnWidth(2) + m_ui.historytablewidget->columnWidth(3),
+    setMinimumSize(m_ui.historytablewidget->columnWidth(0) + m_ui.historytablewidget->columnWidth(1) + m_ui.historytablewidget->columnWidth(2)
+                       + m_ui.historytablewidget->columnWidth(3),
                    height());
     m_ui.historytablewidget->setSortingEnabled(old_sortingenabled);
     return err;
@@ -296,3 +278,5 @@ void HistoryDialog::on_buttonbox_rejected()
     m_ui.historytablewidget->setCurrentCell(0, 0); // you need to change the cell to store the value
     close();
 }
+
+#include "moc_historydialog.cpp"

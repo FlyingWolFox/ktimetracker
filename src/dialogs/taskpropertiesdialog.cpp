@@ -1,22 +1,8 @@
 /*
- * Copyright (c) 2019 Alexander Potashev <aspotashev@gmail.com>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License or (at your option) version 3 or any later version
- * accepted by the membership of KDE e.V. (or its successor approved
- * by the membership of KDE e.V.), which shall act as a proxy
- * defined in Section 14 of version 3 of the license.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2019 Alexander Potashev <aspotashev@gmail.com>
+
+    SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+*/
 
 #include "taskpropertiesdialog.h"
 
@@ -28,13 +14,13 @@
 #include <QLineEdit>
 #include <QPlainTextEdit>
 #include <QPushButton>
-#include <QScrollArea>
 
 #include <KLocalizedString>
 #include <KPluralHandlingSpinBox>
+#ifdef Q_OS_LINUX
 #include <KWindowSystem>
-
-#include "ktimetrackerutility.h"
+#include <KX11Extras>
+#endif // Q_OS_LINUX
 
 TaskPropertiesDialog::TaskPropertiesDialog(QWidget *parent,
                                            const QString &caption,
@@ -72,41 +58,55 @@ TaskPropertiesDialog::TaskPropertiesDialog(QWidget *parent,
     // Desktop tracking group
     m_trackingGroup = new QGroupBox(i18nc("@title:group", "Auto Tracking"), this);
     m_trackingGroup->setCheckable(true);
+    m_trackingGroup->hide();
+#ifdef Q_OS_LINUX
+    if (KWindowSystem::isPlatformX11()) {
+        m_trackingGroup->show();
+    }
+#endif
     m_trackingGroup->setChecked(!desktops.isEmpty());
-
     auto *trackingLayout = new QHBoxLayout(m_trackingGroup);
     m_trackingGroup->setLayout(trackingLayout);
+    m_scrollArea = new QScrollArea(m_trackingGroup);
 
-    auto *scrollArea = new QScrollArea(m_trackingGroup);
-
-    const int numDesktops = KWindowSystem::numberOfDesktops();
-
-    auto *desktopsWidget = new QWidget(m_trackingGroup);
-    auto *desktopsLayout = new QGridLayout(scrollArea);
-    desktopsLayout->addItem(new QSpacerItem(50, 0), 0, 2, numDesktops, 1);
-    desktopsWidget->setLayout(desktopsLayout);
-
-    for (int i = 0; i < numDesktops; ++i) {
-        desktopsLayout->addWidget(new QLabel(i18nc("order number of desktop: 1, 2, ...", "%1.", i + 1)), i, 0);
-
-        auto *checkbox = new QCheckBox(KWindowSystem::desktopName(i + 1));
-        desktopsLayout->addWidget(checkbox, i, 1);
-        m_trackingDesktops.append(checkbox);
+#ifdef Q_OS_LINUX
+    if (KWindowSystem::isPlatformX11()) {
+        m_numDesktops = KX11Extras::numberOfDesktops();
     }
+#endif
+    auto *desktopsWidget = new QWidget(m_trackingGroup);
+    auto *desktopsLayout = new QGridLayout(m_scrollArea);
 
-    for (int index : desktops) {
-        if (index >= 0 && index < numDesktops) {
-            m_trackingDesktops[index]->setChecked(true);
+#ifdef Q_OS_LINUX
+    if (KWindowSystem::isPlatformX11()) {
+        desktopsLayout->addItem(new QSpacerItem(50, 0), 0, 2, m_numDesktops, 1);
+        desktopsWidget->setLayout(desktopsLayout);
+
+        for (int i = 0; i < m_numDesktops; ++i) {
+            desktopsLayout->addWidget(new QLabel(i18nc("order number of desktop: 1, 2, ...", "%1.", i + 1)), i, 0);
+
+            auto *checkbox = new QCheckBox(KX11Extras::desktopName(i + 1));
+            desktopsLayout->addWidget(checkbox, i, 1);
+            m_trackingDesktops.append(checkbox);
+        }
+
+        for (int index : desktops) {
+            if (index >= 0 && index < m_numDesktops) {
+                m_trackingDesktops[index]->setChecked(true);
+            }
         }
     }
+#endif
+    m_scrollArea->setWidget(desktopsWidget);
+    m_scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    scrollArea->setWidget(desktopsWidget);
-    scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-    trackingLayout->addStretch(1);
-    trackingLayout->addWidget(scrollArea);
-    trackingLayout->addStretch(1);
-
+#ifdef Q_OS_LINUX
+    if (KWindowSystem::isPlatformX11()) {
+        trackingLayout->addStretch(1);
+        trackingLayout->addWidget(m_scrollArea);
+        trackingLayout->addStretch(1);
+    }
+#endif
     auto *m_buttonBox = new QDialogButtonBox(this);
     m_buttonBox->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
 
@@ -114,16 +114,24 @@ TaskPropertiesDialog::TaskPropertiesDialog(QWidget *parent,
     connect(m_buttonBox, &QDialogButtonBox::rejected, this, &TaskPropertiesDialog::reject);
 
     mainLayout->addWidget(infoGroup);
-    mainLayout->addWidget(m_trackingGroup, 0);
-    mainLayout->addStretch(0);
+#ifdef Q_OS_LINUX
+    if (KWindowSystem::isPlatformX11()) {
+        mainLayout->addWidget(m_trackingGroup, 0);
+        mainLayout->addStretch(0);
+    }
+#endif
     mainLayout->addWidget(m_buttonBox);
 
-    // Do not show ugly empty box when virtual desktops are not available, e.g.
-    // on Windows
-    if (numDesktops == 0) {
-        // TODO replace check tracking group with a warning instead
-        m_trackingGroup->hide();
+#ifdef Q_OS_LINUX
+    if (KWindowSystem::isPlatformX11()) {
+        // Do not show ugly empty box when virtual desktops are not available, e.g.
+        // on Windows
+        if (m_numDesktops == 0) {
+            // TODO replace check tracking group with a warning instead
+            m_trackingGroup->hide();
+        }
     }
+#endif
 }
 
 QString TaskPropertiesDialog::name() const

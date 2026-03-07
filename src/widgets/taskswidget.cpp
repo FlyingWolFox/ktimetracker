@@ -1,22 +1,8 @@
 /*
- * Copyright (c) 2019 Alexander Potashev <aspotashev@gmail.com>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License or (at your option) version 3 or any later version
- * accepted by the membership of KDE e.V. (or its successor approved
- * by the membership of KDE e.V.), which shall act as a proxy
- * defined in Section 14 of version 3 of the license.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2019 Alexander Potashev <aspotashev@gmail.com>
+
+    SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+*/
 
 #include "taskswidget.h"
 
@@ -48,8 +34,9 @@ void writeEntry(const QString &key, bool value)
     config.sync();
 }
 
-//BEGIN ProgressColumnDelegate (custom painting of the progress column)
-class ProgressColumnDelegate : public QStyledItemDelegate {
+// BEGIN ProgressColumnDelegate (custom painting of the progress column)
+class ProgressColumnDelegate : public QStyledItemDelegate
+{
 public:
     explicit ProgressColumnDelegate(QObject *parent)
         : QStyledItemDelegate(parent)
@@ -82,8 +69,7 @@ public:
                     painter->fillRect(rX + width, rY, newWidth - width, rHeight, gradient2);
                 }
 
-                painter->setPen(option.state & QStyle::State_Selected ? option.palette.highlight().color()
-                                                                      : option.palette.window().color());
+                painter->setPen(option.state & QStyle::State_Selected ? option.palette.highlight().color() : option.palette.window().color());
                 for (int x = rHeight; x < newWidth; x += rHeight) {
                     painter->drawLine(rX + x, rY, rX + x, rY + rHeight - 1);
                 }
@@ -102,8 +88,7 @@ public:
                     painter->fillRect(rX + width, rY, newWidth - width, rHeight, gradient2);
                 }
 
-                painter->setPen(option.state & QStyle::State_Selected ? option.palette.highlight().color()
-                                                                      : option.palette.window().color());
+                painter->setPen(option.state & QStyle::State_Selected ? option.palette.highlight().color() : option.palette.window().color());
                 for (int x = rWidth - rHeight; x > newWidth; x -= rHeight) {
                     painter->drawLine(rWidth - x, rY, rWidth - x, rY + rHeight - 1);
                 }
@@ -115,7 +100,7 @@ public:
         }
     }
 };
-//END
+// END
 
 TasksWidget::TasksWidget(QWidget *parent, QSortFilterProxyModel *filterProxyModel, TasksModel *tasksModel)
     : QTreeView(parent)
@@ -139,7 +124,7 @@ TasksWidget::TasksWidget(QWidget *parent, QSortFilterProxyModel *filterProxyMode
 
     // Context menu for task progress percentage
     m_popupPercentageMenu = new QMenu(this);
-    for (int i = 0; i <= 100; i += 10) {
+    for (int i = 0; i <= 100; i += 5) {
         QString label = i18nc("@item:inmenu Task progress", "%1 %", i);
         m_percentage[m_popupPercentageMenu->addAction(label)] = i;
     }
@@ -255,8 +240,7 @@ void TasksWidget::mouseMoveEvent(QMouseEvent *event)
 bool TasksWidget::mousePositionInsideCheckbox(QMouseEvent *event) const
 {
     QModelIndex index = indexAt(event->pos());
-    return index.isValid() && index.column() == 0 && visualRect(index).x() <= event->pos().x()
-        && event->pos().x() < visualRect(index).x() + 19;
+    return index.isValid() && index.column() == 0 && visualRect(index).x() <= event->pos().x() && event->pos().x() < visualRect(index).x() + 19;
 }
 
 void TasksWidget::mousePressEvent(QMouseEvent *event)
@@ -323,9 +307,9 @@ void TasksWidget::restoreItemState()
 
 Task *TasksWidget::taskAtViewIndex(QModelIndex viewIndex)
 {
-//    if (!m_storage->isLoaded()) {
-//        return nullptr;
-//    }
+    //    if (!m_storage->isLoaded()) {
+    //        return nullptr;
+    //    }
     if (!m_tasksModel) {
         return nullptr;
     }
@@ -352,9 +336,9 @@ void TasksWidget::setFilterText(const QString &text)
 void TasksWidget::refresh()
 {
     // remove root decoration if there is no more child.
-//    int i = 0;
-//    while (itemAt(++i) && itemAt(i)->depth() == 0){};
-    //setRootIsDecorated( itemAt( i ) && ( itemAt( i )->depth() != 0 ) );
+    //    int i = 0;
+    //    while (itemAt(++i) && itemAt(i)->depth() == 0){};
+    // setRootIsDecorated( itemAt( i ) && ( itemAt( i )->depth() != 0 ) );
     // FIXME workaround? seems that the QItemDelegate for the percent column only
     // works properly if rootIsDecorated == true.
     setRootIsDecorated(true);
@@ -375,3 +359,5 @@ void TasksWidget::reconfigure()
 
     refresh();
 }
+
+#include "moc_taskswidget.cpp"

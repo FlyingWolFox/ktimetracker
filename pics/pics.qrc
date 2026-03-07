@@ -1,9 +1,0 @@
-<!DOCTYPE RCC><RCC version="1.0">
-    <qresource prefix="/pics">
-        <file>watch.gif</file>
-        <file>active-icon.gif</file>
-        <file>task-complete.xpm</file>
-        <file>task-incomplete.xpm</file>
-        <file>empty-watch.xpm</file>
-    </qresource>
-</RCC>

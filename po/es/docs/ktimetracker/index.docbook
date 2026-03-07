@@ -8,7 +8,13 @@
 > <!-- change language only here -->
   <!ENTITY % addindex "IGNORE">
 ]>
-
+<!--
+SPDX-FileCopyrightText: 2000-2004 Jonathan Singer
+SPDX-FileCopyrightText: 2004-2005 Mark Bucciarelli <mark@hubcapconsulting.com>
+SPDX-FileCopyrightText: 2019 Alexander Potashev <aspotashev@gmail.com>
+SPDX-FileCopyrightText: 2019 Pino Toscano <pino@kde.org>
+SPDX-License-Identifier: GFDL-1.2-only
+-->
 <book id="ktimetracker" lang="&language;">
 
 <bookinfo id="ktimetrackerinfo">
@@ -217,7 +223,7 @@
 > <guimenu
 >Tarea</guimenu
 > <guimenuitem
->Nueva tarea...</guimenuitem
+>Nueva tarea…</guimenuitem
 > </menuchoice
 >. Para crear una subtarea, resalte la tarea padre y seleccione <menuchoice
 > <shortcut
@@ -229,7 +235,7 @@
 > <guimenu
 >Tarea</guimenu
 > <guimenuitem
->Nueva subtarea...</guimenuitem
+>Nueva subtarea…</guimenuitem
 > </menuchoice
 >. </para>
 
@@ -465,7 +471,7 @@
 > <guisubmenu
 >Importar</guisubmenu
 ><guimenuitem
->Import tareas desde Planner...</guimenuitem
+>Import tareas desde Planner…</guimenuitem
 > </menuchoice
 >, para tenerlos en el formato <ulink url="https://tools.ietf.org/html/rfc2445"
 >iCalendar</ulink
@@ -520,7 +526,7 @@
 > <guimenu
 >Archivo</guimenu
 > <guimenuitem
->Exportar...</guimenuitem
+>Exportar…</guimenuitem
 > </menuchoice
 > y &ktimetracker; mostrará el diálogo de exportación. </para>
 
@@ -547,7 +553,7 @@
 
 <para
 >Modifique los valores predeterminados del diálogo si es necesario. Puede ver una vista previa de la salida CSV en la parte derecha del diálogo. Pulse <guibutton
->Guardar como...</guibutton
+>Guardar como…</guibutton
 > para que &ktimetracker; exporte los totales de todas las tareas en el archivo que haya introducido en el diálogo.</para>
 
 <para
@@ -598,7 +604,7 @@
 > <guisubmenu
 >Exportar</guisubmenu
 > <guimenuitem
->Exportar...</guimenuitem
+>Exportar…</guimenuitem
 > </menuchoice
 > y &ktimetracker; mostrará el mismo diálogo de exportación que se mostró arriba. Seleccione la opción <guibutton
 >Historial como CSV</guibutton
@@ -608,7 +614,7 @@
 
 <para
 >Seleccione el intervalo de fechas que desea que cubra el historial de la tarea. Modifique los valores predeterminados del diálogo si es necesario. Puede ver una vista previa de la salida CSV en la parte derecha del diálogo. Pulse <guibutton
->Guardar como...</guibutton
+>Guardar como…</guibutton
 > para que &ktimetracker; exporte los totales de todas las tareas en el archivo que haya introducido en el diálogo.</para>
 
 <para

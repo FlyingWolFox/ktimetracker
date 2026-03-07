@@ -1,60 +1,78 @@
-set(ktimetracker_SRCS
-    dialogs/edittimedialog.cpp
-    dialogs/taskpropertiesdialog.cpp
+# SPDX-FileCopyrightText: 2019 Alexander Potashev <aspotashev@gmail.com>
+# SPDX-FileCopyrightText: 2021 David Stächele <david@daiwai.de>
+# SPDX-FileCopyrightText: 2024 Thiago Masato Costa Sueto <thiago.sueto@kde.org>
+# SPDX-License-Identifier: BSD-2-Clause
 
-    export/totalsastext.cpp
-    export/csvhistory.cpp
-    export/csveventlog.cpp
-    export/csvtotals.cpp
-    export/export.cpp
+add_library(ktt-general STATIC) # Header only + kcfg + logging
+add_library(ktt-deps INTERFACE)
+add_library(ktt-backports STATIC)
+add_library(ktt-base STATIC)
+add_library(ktt-dialogs STATIC)
+add_library(ktt-export STATIC)
+add_library(ktt-file STATIC)
+add_library(ktt-import STATIC)
+add_library(ktt-model STATIC)
+add_library(ktt-settings STATIC)
+add_library(ktt-widgets STATIC)
 
-    file/filecalendar.cpp
-    file/icalformatkio.cpp
-
-    model/event.cpp
-    model/eventsmodel.cpp
-    model/projectmodel.cpp
-    model/task.cpp
-    model/tasksmodel.cpp
-    model/tasksmodelitem.cpp
-
-    settings/ktimetrackerconfigdialog.cpp
-
-    widgets/searchline.cpp
-    widgets/taskswidget.cpp
-
-    dialogs/exportdialog.cpp
-    desktoptracker.cpp
-    focusdetector.cpp
-    dialogs/historydialog.cpp
-    idletimedetector.cpp
-    ktimetrackerutility.cpp
-    mainwindow.cpp
-    import/plannerparser.cpp
-    taskview.cpp
-    timetrackerstorage.cpp
-    timetrackerwidget.cpp
-    tray.cpp
-    treeviewheadercontextmenu.cpp
-    $<TARGET_OBJECTS:pics>
-    $<TARGET_OBJECTS:icons>
+target_link_libraries(ktt-deps
+    INTERFACE
+    Qt5::Widgets
+    KF5::I18n
+    KF5::CoreAddons
+    KF5::DBusAddons
+    KF5::XmlGui
+    KF5::CalendarCore
+    KF5::ConfigGui
+    KF5::IdleTime
+    KF5::ConfigWidgets
+    KF5::Notifications
+    KF5::TextWidgets
+    KF5::KIOCore
+    KF5::JobWidgets
+    KF5::IconThemes
+    KF5::Crash
 )
 
-ecm_qt_declare_logging_category(ktimetracker_SRCS
+if(NOT WIN32)
+    target_link_libraries(ktt-deps
+        INTERFACE
+        KF5::WindowSystem
+    )
+endif()
+
+kconfig_add_kcfg_files(ktt-general settings/ktimetracker.kcfgc)
+
+ecm_qt_declare_logging_category(ktt-general
     HEADER ktt_debug.h
     IDENTIFIER KTT_LOG
     CATEGORY_NAME log_ktt
 )
 
-qt5_add_dbus_adaptor(ktimetracker_SRCS
+qt5_add_dbus_adaptor(ktt-dbus
+    # DBus spec
     org.kde.ktimetracker.ktimetracker.xml
-    timetrackerwidget.h
+    # Header
+    base/timetrackerwidget.h
+    # Parent class
     TimeTrackerWidget
+    # Basename: generates mainadaptor.h/.cpp
     mainadaptor
+    # Class name
     MainAdaptor
 )
 
-ki18n_wrap_ui(ktimetracker_SRCS
+add_executable(ktimetracker)
+
+target_sources(ktimetracker
+    PRIVATE
+    main.cpp
+    ktimetracker.qrc
+    ${ktt-dbus}
+    $<TARGET_OBJECTS:icons>
+)
+
+ki18n_wrap_ui(ktimetracker
     dialogs/exportdialog.ui
     dialogs/historydialog.ui
     settings/cfgbehavior.ui
@@ -62,45 +80,42 @@ ki18n_wrap_ui(ktimetracker_SRCS
     settings/cfgstorage.ui
 )
 
-kconfig_add_kcfg_files(ktimetracker_SRCS settings/ktimetracker.kcfgc)
-
-qt5_add_resources(ktimetracker_SRCS ktimetracker.qrc)
-
-add_library(libktimetracker STATIC ${ktimetracker_SRCS})
-target_link_libraries(libktimetracker
-    KF5::ConfigWidgets
-    KF5::WindowSystem
-    KF5::Notifications
-    KF5::I18n
-    KF5::XmlGui
-    KF5::JobWidgets
-    KF5::KIOCore
-    KF5::IdleTime
-    KF5::DBusAddons
-    KF5::CalendarCore
-    KF5::TextWidgets
+# Add icons to the .exe target directly, otherwise
+# they are not included on Windows.
+ecm_add_app_icon(ktimetracker ICONS
+    ${CMAKE_SOURCE_DIR}/icons/16-apps-ktimetracker.png
+    ${CMAKE_SOURCE_DIR}/icons/22-apps-ktimetracker.png
+    ${CMAKE_SOURCE_DIR}/icons/32-apps-ktimetracker.png
+    ${CMAKE_SOURCE_DIR}/icons/48-apps-ktimetracker.png
+    ${CMAKE_SOURCE_DIR}/icons/64-apps-ktimetracker.png
+    ${CMAKE_SOURCE_DIR}/icons/128-apps-ktimetracker.png
 )
 
-ecm_add_app_icon(ktimetracker_app_icon_SRCS ICONS
-    ${CMAKE_CURRENT_SOURCE_DIR}/../icons/breeze-app-icon-png/16-apps-ktimetracker.png
-    ${CMAKE_CURRENT_SOURCE_DIR}/../icons/breeze-app-icon-png/22-apps-ktimetracker.png
-    ${CMAKE_CURRENT_SOURCE_DIR}/../icons/breeze-app-icon-png/32-apps-ktimetracker.png
-    ${CMAKE_CURRENT_SOURCE_DIR}/../icons/breeze-app-icon-png/48-apps-ktimetracker.png
-    ${CMAKE_CURRENT_SOURCE_DIR}/../icons/breeze-app-icon-png/64-apps-ktimetracker.png
-    ${CMAKE_CURRENT_SOURCE_DIR}/../icons/breeze-app-icon-png/128-apps-ktimetracker.png
+target_link_libraries(ktimetracker
+    PRIVATE
+    ktt-general
+    ktt-deps
+    ktt-backports
+    ktt-base
+    ktt-export
+    ktt-import
+    ktt-model
 )
-
-# Add ktimetracker_app_icon_SRCS to the .exe target directly, otherwise
-# the icon is not included on Windows.
-add_executable(ktimetracker
-    main.cpp
-    ${ktimetracker_app_icon_SRCS}
-)
-target_link_libraries(ktimetracker libktimetracker)
 
 install(TARGETS ktimetracker ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES org.kde.ktimetracker.ktimetracker.xml DESTINATION ${KDE_INSTALL_DBUSINTERFACEDIR})
 install(PROGRAMS org.kde.ktimetracker.desktop DESTINATION ${KDE_INSTALL_APPDIR})
+
+add_subdirectory(backports)
+add_subdirectory(base)
+add_subdirectory(dialogs)
+add_subdirectory(export)
+add_subdirectory(file)
+add_subdirectory(import)
+add_subdirectory(model)
+add_subdirectory(settings)
+add_subdirectory(widgets)
+add_subdirectory(pics)
 
 if(BUILD_TESTING)
     add_subdirectory(tests)

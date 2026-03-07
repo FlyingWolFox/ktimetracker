@@ -1,9 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component type="desktop">
-  <id>org.kde.ktimetracker.desktop</id>
+<!--
+SPDX-FileCopyrightText: 2019, 2021 Alexander Potashev <aspotashev@gmail.com>
+SPDX-FileCopyrightText: 2022 Matthias Mailänder <matthias@mailaender.name>
+SPDX-FileCopyrightText: 2026 FlyingWolFox <49326973+FlyingWolFox@users.noreply.github.com>
+
+SPDX-License-Identifier: GPL-2.0-or-later
+-->
+<component type="desktop-application">
+  <id>org.kde.ktimetracker</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0</project_license>
+  <developer id="org.kde">
+    <name translate="no">KDE</name>
+  </developer>
+  <launchable type="desktop-id">org.kde.ktimetracker.desktop</launchable>
+  <content_rating type="oars-1.1"/>
+  <url type="homepage">https://apps.kde.org/ktimetracker</url>
+  <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=ktimetracker</url>
+  <url type="vcs-browser">https://invent.kde.org/pim/ktimetracker</url>
+  <project_group>KDE</project_group>
+  <provides>
+    <binary>ktimetracker</binary>
+    <id>org.kde.ktimetracker.desktop</id>
+  </provides>
+  <replaces>
+    <id>org.kde.ktimetracker.desktop</id>
+  </replaces>
   <name>KTimeTracker</name>
+  <name xml:lang="ar">متعقب الوقت</name>
+  <name xml:lang="ast">KTimeTracker</name>
   <name xml:lang="ca">KTimeTracker</name>
   <name xml:lang="ca-valencia">KTimeTracker</name>
   <name xml:lang="cs">KTimeTracker</name>
@@ -12,29 +37,35 @@
   <name xml:lang="eo">KTimeTracker</name>
   <name xml:lang="es">KTimeTracker</name>
   <name xml:lang="et">KTimeTracker</name>
+  <name xml:lang="eu">KTimeTracker</name>
   <name xml:lang="fi">KTimeTracker</name>
   <name xml:lang="fr">KTimeTracker</name>
   <name xml:lang="gl">KTimeTracker</name>
+  <name xml:lang="he">KTimeTracker</name>
+  <name xml:lang="hi">केटाइमट्रैकर</name>
   <name xml:lang="ia">KTimeTracker</name>
   <name xml:lang="id">KTimeTracker</name>
   <name xml:lang="it">KTimeTracker</name>
   <name xml:lang="ka">KTimeTracker</name>
   <name xml:lang="ko">KTimetracker</name>
+  <name xml:lang="lt">KTimeTracker</name>
+  <name xml:lang="lv">KTimeTracker</name>
   <name xml:lang="nl">KTimeTracker</name>
   <name xml:lang="nn">KTimeTracker</name>
   <name xml:lang="pl">KTimeTracker</name>
   <name xml:lang="pt">KTimeTracker</name>
   <name xml:lang="pt-BR">KTimeTracker</name>
   <name xml:lang="ru">KTimeTracker</name>
+  <name xml:lang="sa">KTimeTracker</name>
   <name xml:lang="sk">KTimeTracker</name>
   <name xml:lang="sl">KTimeTracker</name>
   <name xml:lang="sv">Ktimerracker</name>
   <name xml:lang="tr">K Zamanölçer</name>
   <name xml:lang="uk">KTimeTracker</name>
-  <name xml:lang="x-test">xxKTimeTrackerxx</name>
   <name xml:lang="zh-CN">KTimeTracker</name>
   <name xml:lang="zh-TW">KTimeTracker</name>
   <summary>Personal Time Tracker</summary>
+  <summary xml:lang="ar">متعقب وقت شخصي</summary>
   <summary xml:lang="ca">Seguidor personal del temps</summary>
   <summary xml:lang="ca-valencia">Seguidor personal del temps</summary>
   <summary xml:lang="de">Persönliche Zeiterfassung</summary>
@@ -42,57 +73,71 @@
   <summary xml:lang="eo">Persona Tempsekvilo</summary>
   <summary xml:lang="es">Seguimiento del tiempo personal</summary>
   <summary xml:lang="et">Isikliku aja arvestamine</summary>
+  <summary xml:lang="eu">Denbora pertsonalaren aztarnaria</summary>
   <summary xml:lang="fi">Henkilökohtainen ajankäytön seuranta</summary>
   <summary xml:lang="fr">Outil de gestion du temps personnel</summary>
   <summary xml:lang="gl">Seguimento do tempo persoal</summary>
+  <summary xml:lang="he">עוקב תזמונים אישי</summary>
+  <summary xml:lang="hi">व्यक्तिगत समय ट्रैकर</summary>
   <summary xml:lang="ia">Traciator de tempore personal</summary>
   <summary xml:lang="id">Pelacak Waktu Personal</summary>
   <summary xml:lang="it">Segnatempo personale</summary>
   <summary xml:lang="ka">პირადი დროის ტრეკერი</summary>
   <summary xml:lang="ko">개인 시간 추적기</summary>
+  <summary xml:lang="lt">Asmeninis laiko seklys</summary>
+  <summary xml:lang="lv">Personīgais laika uzskaitītājs</summary>
   <summary xml:lang="nl">Persoonlijk tijdgebruik</summary>
   <summary xml:lang="nn">Personleg tidtakar</summary>
   <summary xml:lang="pl">Osobisty czasomierz</summary>
   <summary xml:lang="pt">Gestor do Tempo Pessoal</summary>
   <summary xml:lang="pt-BR">Gerenciador de tempo pessoal</summary>
   <summary xml:lang="ru">Учёт времени</summary>
+  <summary xml:lang="sa">व्यक्तिगत समय निरीक्षक</summary>
   <summary xml:lang="sk">Osobný sledovač času</summary>
   <summary xml:lang="sl">Osebni sledilnik porabe časa</summary>
   <summary xml:lang="sv">Personlig tidmätning</summary>
   <summary xml:lang="tr">Kişisel Zaman Ölçer</summary>
   <summary xml:lang="uk">Програма для керування особистим часом</summary>
-  <summary xml:lang="x-test">xxPersonal Time Trackerxx</summary>
   <summary xml:lang="zh-CN">个人时间追踪器</summary>
   <summary xml:lang="zh-TW">個人時間追蹤器</summary>
   <description>
     <p>KTimeTracker helps you track your personal time spent on various tasks and projects.</p>
+    <p xml:lang="ar">يساعدك تطبيق متعقب الوقت على تتبع وقتك الشخصي الذي تقضيه في أداء المهام والمشاريع المختلفة.</p>
     <p xml:lang="ca">El KTimeTracker ajuda a fer un seguiment del vostre temps personal dedicat a diverses tasques i projectes.</p>
     <p xml:lang="ca-valencia">KTimeTracker ajuda a fer un seguiment del vostre temps personal dedicat a diverses tasques i projectes.</p>
-    <p xml:lang="de">KTimeTracker misst die Zeit, die Sie für verschiedene Aufgaben und Projekte benötigen</p>
+    <p xml:lang="de">KTimeTracker misst die Zeit, die Sie für verschiedene Aufgaben und Projekte benötigen.</p>
     <p xml:lang="en-GB">KTimeTracker helps you track your personal time spent on various tasks and projects.</p>
     <p xml:lang="eo">KTimeTracker helpas vin spuri vian personan tempon elspezitan je variaj taskoj kaj projektoj.</p>
     <p xml:lang="es">KTimeTracker le ayuda a hacer un seguimiento del tiempo personal invertido en diversas tareas y proyectos.</p>
     <p xml:lang="et">KTimeTracker aitab silma peal hoida ajal, mis sul kulub mitmesugustele ülesannetele ja projektidele.</p>
+    <p xml:lang="eu">«KTimeTracker»rek hainbat ataza eta proiektutan eman duzun denboraren jarraipena egiten laguntzen dizu.</p>
     <p xml:lang="fi">KTimeTracker auttaa pitämään kirjaa eri tehtäviin ja projekteihin käyttämästäsi ajasta.</p>
     <p xml:lang="fr">KTimeTracker vous aide à suivre le temps que vous passez sur différentes tâches et projets.</p>
     <p xml:lang="gl">KTimeTracker axuda a facer un seguimento do tempo persoal que se dedica a distintas tarefas e proxectos.</p>
+    <p xml:lang="he">KTimeTracker מסייע לך לעקוב אחר הזמן האישי שהשקעת במגוון משימות ומיזמים.</p>
+    <p xml:lang="hi">KTimeTracker आपको विभिन्न कार्यों और परियोजनाओं पर खर्च किए गए अपने व्यक्तिगत समय को ट्रैक करने में मदद करता है।</p>
     <p xml:lang="ia">Ktimetracker adjuta te a traciar tu tempore personal passate sur varie cargas e projectos.</p>
     <p xml:lang="id">KTimeTracker membantu kamu melacak waktu personal yang dihabiskan pada berbagai tugas dan projekmu.</p>
     <p xml:lang="it">KTimeTracker ti aiuta a tenere traccia del tempo personale speso in varie attività e progetti.</p>
+    <p xml:lang="ka">KTimeTracker დაგეხმარებათ, თვალყური ადევნოთ თქვენს პირად დროს, რომელსაც სხვადასხვა ამოცანებზე და პროექტებზე ხარჯავთ.</p>
     <p xml:lang="ko">KTimeTracker는 다양한 작업과 프로젝트에 투자한 개인 시간을 추적합니다.</p>
+    <p xml:lang="lt">KTimeTracker padeda jums sekti, kiek asmeninio laiko skyrėte įvarioms užduotims ir projektams.</p>
+    <p xml:lang="lv">„KTimeTracker“ jums palīdzēs sekot līdzi laikam, ko pavadāt pie dažādiem darbiem un projektiem.</p>
     <p xml:lang="nl">KTimeTracker helpt u uw persoonlijk gebruikte tijd aan verschillende taken and projecten te volgen.</p>
     <p xml:lang="nn">KTimeTracker hjelper deg å halda oversikt over kor mykje tid du brukar på ulike oppgåver og prosjekt.</p>
     <p xml:lang="pl">KTimeTracker pomaga zliczyć osobisty czas poświęcony na różne zadania i projekty.</p>
     <p xml:lang="pt">O KTimeTracker ajuda-nos a acompanhar o seu tempo pessoal gasto em várias tarefas e projectos.</p>
     <p xml:lang="pt-BR">O KTimeTracker ajuda-o a acompanhar o seu tempo pessoal gasto em várias tarefas e projetos.</p>
     <p xml:lang="ru">KTimeTracker помогает отслеживать время, которое вы тратите на различные задачи и проекты.</p>
+    <p xml:lang="sa">KTimeTracker भवन्तं विविधकार्यं परियोजनासु च व्ययितस्य व्यक्तिगतसमयस्य निरीक्षणं कर्तुं साहाय्यं करोति।</p>
     <p xml:lang="sl">KTimeTracker vam pomaga spremljati vaš osebni čas, porabljen za različne naloge in projekti.</p>
     <p xml:lang="sv">Ktimerracker hjälper till att hålla reda på personlig tid spenderad på diverse aktiviteter och projekt.</p>
     <p xml:lang="tr">K Zamanölçer, çeşitli görevler ve projeler üzerinde harcadığınız zamanı ölçmenize yarar.</p>
     <p xml:lang="uk">KTimeTracker допоможе вам стежити за вашим особистим часом, який ви витрачаєте на виконання різноманітних завдань та проєктів.</p>
-    <p xml:lang="x-test">xxKTimeTracker helps you track your personal time spent on various tasks and projects.xx</p>
     <p xml:lang="zh-CN">KTimeTracker 可帮助您追踪花在各种任务和项目上的个人时间。</p>
+    <p xml:lang="zh-TW">KTimeTracker 幫您追蹤花費於各種事情與專案的個人時間。</p>
     <p>It is useful for tracking billable hours and can report the hours logged by task and day.</p>
+    <p xml:lang="ar">إنه مفيد لتتبع ساعات العمل القابلة للفوترة ويمكنه الإبلاغ عن الساعات المسجلة حسب المهمة واليوم.</p>
     <p xml:lang="ca">És útil per al seguiment de les hores facturables i pot informar de les hores registrades per tasca i dia.</p>
     <p xml:lang="ca-valencia">És útil per al seguiment de les hores facturables i pot informar de les hores registrades per tasca i dia.</p>
     <p xml:lang="de">Das Programm ist nützlich, wenn z. B. die für verschiedene Kunden aufgewendeten Stunden verrechnet werden müssen.</p>
@@ -100,59 +145,73 @@
     <p xml:lang="eo">Ĝi estas utila por spuri faktureblajn horojn kaj povas raporti la horojn registritajn laŭ tasko kaj tago.</p>
     <p xml:lang="es">Es útil para hacer un seguimiento de las horas facturables y puede informar de las horas registradas por tarea y día.</p>
     <p xml:lang="et">Sellest on eriti abi tasustataval ajal silma peal hoidmiseks ja sellest ülesannete ja päevade kaupa aru andmiseks.</p>
+    <p xml:lang="eu">Fakturatu daitezkeen orduen jarraipena egiteko erabilgarria, eta atazako eta eguneko erregistratutako orduen berri eman dezake.</p>
     <p xml:lang="fi">Sillä voi seurata laskutettavia tunteja ja raportoida kirjatut tunnit tehtävittäin ja päivittäin.</p>
     <p xml:lang="fr">Il vous permet de calculer vos heures facturables et de créer des rapports par tâche et par jour.</p>
     <p xml:lang="gl">Resulta útil para facer un seguimento de horas de traballo e pode informar das horas rexistradas por tarefa e día.</p>
+    <p xml:lang="he">שימושי למעקב אחר שעות לחיוב ומאפשר לדווח על השעות שתועדו לפי משימה ויום.</p>
+    <p xml:lang="hi">यह बिल योग्य घंटों पर नज़र रखने के लिए उपयोगी है और कार्य और दिन के अनुसार लॉग किए गए घंटों की रिपोर्ट कर सकता है।</p>
     <p xml:lang="ia">Illo es utile per traciar horas facturabile  e pote reportar le horas de accesso per carga e die.</p>
     <p xml:lang="id">Ini berguna untuk melacak jam terbang dan bisa melaporkan jam yang dicatat berdasarkan tugas dan harian.</p>
     <p xml:lang="it">È utile per tracciare ore fatturabili e fornire resoconti delle ore registrate per attività e giorno.</p>
+    <p xml:lang="ka">სასარგებლოა გადახდადი საათების თვალყურის სადევნებად და შეუძლია, ანგარიში ამოცანის და დღის მიხედვით შეგიქმნათ.</p>
     <p xml:lang="ko">작업별과 업무일별로 시간을 보고하고 공임 계산에 사용할 수 있습니다.</p>
+    <p xml:lang="lt">Ši programa yra naudinga sekant apmokamas valandas ir gali rodyti pagal užduotį ir dienas registruotų valandų ataskaitas.</p>
+    <p xml:lang="lv">Tā ir noderīga programma, lai uzskaitītu stundas, par kurām izrakstīt rēķinu, jo prot uzskaitīt pie katra darba pavadītās stundas pa dienām.</p>
     <p xml:lang="nl">Het is nuttig voor het volgen van in rekening te brengen uren en kan de vastgelegde uren rapporteren per taak en dag.</p>
     <p xml:lang="nn">Det er nyttig for fakturering av timar, og det kan visa rapportar over tidsbruk fordelt på oppgåve og dato.</p>
     <p xml:lang="pl">Użyteczny do liczenia płatnych godzin oraz tworzenia sprawozdań z godzin wykorzystanych na dane zadanie i w danym dniu.</p>
     <p xml:lang="pt">É útil para gerir as horas para facturação e poderá relatar as horas registadas por tarefa e por dia.</p>
     <p xml:lang="pt-BR">É útil para gerenciar as horas úteis e relacionar as horas registradas por tarefa e por dia.</p>
     <p xml:lang="ru">Приложение полезно для подсчёта оплачиваемых часов работы. При создании отчёта затраченные часы будут разбиты по задачам и по дням.</p>
+    <p xml:lang="sa">बिलयोग्यघण्टानां अनुसरणं कर्तुं उपयोगी अस्ति तथा च कार्येण दिवसेन च लॉग् कृतानां घण्टानां सूचनां दातुं शक्नोति ।</p>
     <p xml:lang="sl">Uporaben je za sledenje plačljivih ur in lahko poroča o prijavljenih urah po dejavnostih in dnevih.</p>
     <p xml:lang="sv">Det är användbart för att hålla reda på debiterbara timmar och kan rapportera timmar loggade enligt aktivitet och dag.</p>
     <p xml:lang="tr">Fatura etmeniz gereken çalışma saatlerini ve görev ve tarih başına harcanan saatleri ölçmek için yararlıdır.</p>
     <p xml:lang="uk">Ця програма корисна для стеження за обліком годин, вона може створювати звіти за даними, записаними для задачі або протягом дня.</p>
-    <p xml:lang="x-test">xxIt is useful for tracking billable hours and can report the hours logged by task and day.xx</p>
     <p xml:lang="zh-CN">它有助于追踪带薪时间，并可按任务和日期报告小时数。</p>
+    <p xml:lang="zh-TW">它可以用來追蹤計費工時，並依工作或日期來回報已紀錄的時數。</p>
     <p>With KTimeTracker, you can organize a broken-down project as subtasks with unlimited nesting. The standard keyboard and mouse shortcuts are simple and make the tool really comfortable and intuitive to use.</p>
+    <p xml:lang="ar">باستخدام متعقب الوقت يمكنك تنظيم مشروع مجزأ كمهام فرعية مع إمكانية التداخل غير المحدودة. اختصارات لوحة المفاتيح والفأرة القياسية بسيطة وتجعل الأداة مريحة للغاية وبديهية الاستخدام.</p>
     <p xml:lang="ca">Amb el KTimeTracker, podreu organitzar un projecte desglossat com a subtasques amb nidificació il·limitada. Les dreceres de teclat i ratolí estàndard són senzilles i fan que l'eina sigui molt còmoda i intuïtiva.</p>
     <p xml:lang="ca-valencia">Amb KTimeTracker, podreu organitzar un projecte desglossat com a subtasques amb nidificació il·limitada. Les dreceres de teclat i ratolí estàndard són senzilles i fan que l'eina siga molt còmoda i intuïtiva.</p>
     <p xml:lang="de">Mit KTimeTracker können Sie ein Projekt als Teilaufgaben mit unbegrenzter Verschachtelung organisieren. Die standardmäßigen Tastenkombinationen für Tastatur und Maus sind einfach und komfortabel und ermöglichen eine komfortable und intuitive Bedienung.</p>
     <p xml:lang="en-GB">With KTimeTracker, you can organize a broken-down project as subtasks with unlimited nesting. The standard keyboard and mouse shortcuts are simple and make the tool really comfortable and intuitive to use.</p>
     <p xml:lang="eo">Kun KTimeTracker, vi povas organizi dispecigitan projekton kiel subtaskojn kun senlima ingado. La normaj klavaraj kaj musaj ŝparvojoj estas simplaj kaj igas la ilon vere komforta kaj intuicia uzi.</p>
-    <p xml:lang="es">Con KTimeTracker puede organizar un proyecto desglosado como subtareas con anidación ilimitada. Los accesos rápidos estándares del teclado y del ratón son sencillos y hacen que la herramienta resulte cómoda e intuitiva.</p>
+    <p xml:lang="es">Con KTimeTracker puede organizar un proyecto desglosado como subtareas con anidación ilimitada. Los atajos de teclado estándares y del ratón son sencillos y hacen que la herramienta resulte cómoda e intuitiva.</p>
     <p xml:lang="et">KTimeTracker võimaldab projekte liigendada alamülesanneteks, kusjuures tasandite arv ei ole piiratud. Standardseid kiirklahve on hõlpus meelde jätta, mis muudab rakenduse käsitsemise tõeliselt mugavaks ja kasutajasõbralikuks.</p>
+    <p xml:lang="eu">KTimeTracker erabiliz, atal txikiagotan zatitutako proiektu bat azpiatazatan antola dezakezu, habiaratze infinituarekin. Teklatuko eta saguaren lasterbideak errazak dira eta tresna, erabiltzeko eroso eta intuitiboa egiten dute.</p>
     <p xml:lang="fi">KTimeTrackerilla voi projektin järjestää rajoittamattomasti sisäkkäisiksi alitehtäviksi. Vakiopikanäppäimet ja -hiiritoiminnot ovat yksinkertaisia ja tekevät työkalun käytöstä mukavaa ja intuitiivista.</p>
     <p xml:lang="fr">Grâce à KTimeTracker, vous pouvez organiser un projet en sous-tâches avec un nombre illimité de niveaux. Les raccourcis clavier et souris sont simples, de manière à ce que l'outil soit intuitif et confortable à utiliser.</p>
     <p xml:lang="gl">Con KTimeTracker pode  organizar un proxecto en tarefas aniñadas en niveis ilimitados. Os atallos de teclado e rato estándar son simples e fornecer unha experiencia cómoda e intuitiva.</p>
+    <p xml:lang="he">עם KTimeTracker, אפשר לארגן מיזם מפורק לתת־משימות עם רמות קינון אינסופיות. קיצורי המקלדת והעכבר הרגילים הם פשוטים והופכים את הכלי לנוח ומסביר פנים במיוחד.</p>
+    <p xml:lang="hi">KTimeTracker के साथ, आप एक टूटी हुई परियोजना को असीमित नेस्टिंग के साथ उप-कार्यों के रूप में व्यवस्थित कर सकते हैं। मानक कीबोर्ड और माउस शॉर्टकट सरल हैं और उपकरण को उपयोग करने के लिए वास्तव में आरामदायक और सहज बनाते हैं।</p>
     <p xml:lang="ia">Con KTiMETracker tu pote organizar un projecto subdividite in subcargas con annidationes sin limite. Le vias breve standard de clavriero e mus es simple e face le instrumento vermente confortabile e intuitive de usar.</p>
     <p xml:lang="id">Dengan KTimeTracker,kamu bisa mengatur projek yang kacau sebagai subtugas dengan bersarang tanpa batas. Pintasan keyboard dan mouse standar yang sederhana dan membuat alat ini benar-benar nyaman dan intuitif untuk digunakan.</p>
     <p xml:lang="it">Con KTimeTracker, puoi organizzare un progetto frammentato come sotto-attività con nidificazione illimitata. Le scorciatoie standard per tastiera e mouse sono semplici e rendono lo strumento davvero comodo e intuitivo da utilizzare.</p>
+    <p xml:lang="ka">KTimeTracker-თან ერთად შეგიძლიათ, განუსაზღვრელად ერთმანეთში ჩადგმულ ქვეამოცანებად დაშლილი პროექტის ორგანზაცია მოახდინოთ. სტანდარტული კლავიატურისა და თაგუნას მალსახმობები მარტივია და პროგრამას ინტუიტიურს და კომფორტულს ხდის.</p>
     <p xml:lang="ko">KTimeTracker를 사용하여 프로젝트를 다단계의 하위 작업으로 구성할 수 있습니다. 키보드 단축키와 마우스 동작을 사용하여 사용 편의성을 극대화합니다.</p>
+    <p xml:lang="lt">Naudodami KTimeTracker galite tvarkyti išskaidytą projektą kaip dalines užduotis su neribota įdėtimi. Paprasti standartiniai klaviatūros ir pelės spartieji klavišai padaro naudojimąsi įrankiu patogų ir intuityvų.</p>
+    <p xml:lang="lv">Ar „KTimeTracker“ varat izkārtot sarežģītāku projektu neierobežotos apakšdarbos. Programmas standarta tastatūras un peles saīsnes ir vienkāršas, kas tās izmantošanu padara komfortablu un intuitīvu.</p>
     <p xml:lang="nl">Met KTimeTracker kunt u een in subtaken opgebroken project organiseren met onbeperkte nesting. De standaard sneltoetsen voor toetsenbord en muis zijn eenvoudig en maken het hulpmiddel echt comfortabel en intuïtief te gebruiken.</p>
     <p xml:lang="nn">Med KTimeTracker kan organisera prosjekt med underoppgåver på vilkårleg mange nivå. Standard snøggtastar og musesnarvegar er enkle og gjer programmet svært behageleg og intuitivt å bruka.</p>
     <p xml:lang="pl">Z KTimeTracker, można podzielić projekt na podzadania bez ograniczenia zagnieżdżeń. Podstawowe skróty klawiszowe i myszy są proste i czynią narzędzie przyjemne i intuicyjne w użyciu.</p>
     <p xml:lang="pt">Com o KTimeTracker, poderá organizar um projecto decomposto em sub-tarefas com níveis ilimitados. Os atalhos-padrão do teclado e rato são simples e tornam a ferramenta realmente confortável e intuitiva para usar.</p>
     <p xml:lang="pt-BR">Com o KTimeTracker você poderá organizar um projeto organizado em subtarefas com níveis ilimitados. Os atalhos padrão de teclado e mouse são simples e tornam a ferramenta realmente confortável e intuitiva para usar.</p>
     <p xml:lang="ru">KTimeTracker позволяет разбивать проекты на подзадачи с неограниченной глубиной вложенности. Стандартные комбинации для клавиш и мыши интуитивно понятны и облегчают работу с приложением.</p>
+    <p xml:lang="sa">KTimeTracker इत्यनेन सह, असीमितनेस्टिंग् इत्यनेन सह उपकार्यरूपेण भग्नं परियोजनां व्यवस्थितुं शक्नुवन्ति । मानककीबोर्डस्य माउसस्य च शॉर्टकट् सरलाः सन्ति तथा च साधनं वास्तवमेव आरामदायकं, उपयोगाय सहजं च करोति ।</p>
     <p xml:lang="sl">S programom KTimeTracker lahko organizirate razčlenjen projekt kot podrejene dejavnosti z neomejenim gnezdenjem. Običajne bližnjice na tipkovnici in miški so preproste in omogočajo, da je orodje resnično udobno in intuitivno za uporabo.</p>
     <p xml:lang="sv">Med Ktimetracker man kan organisera ett nerbrutet projekt som delaktiviteter med obegränsat djup. De vanliga tangentbords- och musgenvägarna är enkla och gör verktyget verkligt bekvämt och intuitivt att använda.</p>
     <p xml:lang="tr">K Zamanölçer ile, alt ögelere ayrılmış bir projeyi sınırsız dallandırma ile organize edebilirsiniz. Standart klavye ve fare kısayolları çok yalındır ve kullanımı olabildiğince konforlu ve rahat kılar.</p>
     <p xml:lang="uk">За допомогою KTimeTracker ви можете упорядкувати поділ проєкту на підзавдання (рівень вкладеності не обмежено). Стандартні клавіатурні скорочення та дії за допомогою миші є простими — вони забезпечують зручність та інтуїтивну зрозумілість принципів керування програмою.</p>
-    <p xml:lang="x-test">xxWith KTimeTracker, you can organize a broken-down project as subtasks with unlimited nesting. The standard keyboard and mouse shortcuts are simple and make the tool really comfortable and intuitive to use.xx</p>
     <p xml:lang="zh-CN">通过 KTimeTracker，您可以将零碎的项目整理成无限套的小任务。简易标准的键鼠快捷键使本工具十分舒适且直观使用。</p>
+    <p xml:lang="zh-TW">利用 KTimeTracker，您可以將專案分為子工作來管理，子工作之下也能有更多子工作，沒有層數限制。標準提供的鍵盤與滑鼠快捷鍵簡潔易懂，讓此工具使用起來直覺且順暢。</p>
   </description>
-  <content_rating type="oars-1.1"/>
-  <url type="homepage">https://apps.kde.org/ktimetracker</url>
-  <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=ktimetracker</url>
   <screenshots>
     <screenshot type="default">
       <caption>KTimeTracker</caption>
+      <caption xml:lang="ar">متعقب الوقت</caption>
+      <caption xml:lang="ast">KTimeTracker</caption>
       <caption xml:lang="ca">KTimeTracker</caption>
       <caption xml:lang="ca-valencia">KTimeTracker</caption>
       <caption xml:lang="cs">KTimeTracker</caption>
@@ -161,37 +220,39 @@
       <caption xml:lang="eo">KTimeTracker</caption>
       <caption xml:lang="es">KTimeTracker</caption>
       <caption xml:lang="et">KTimeTracker</caption>
+      <caption xml:lang="eu">KTimeTracker</caption>
       <caption xml:lang="fi">KTimeTracker</caption>
       <caption xml:lang="fr">KTimeTracker</caption>
       <caption xml:lang="gl">KTimeTracker</caption>
+      <caption xml:lang="he">KTimeTracker</caption>
+      <caption xml:lang="hi">केटाइमट्रैकर</caption>
       <caption xml:lang="ia">KTimeTracker</caption>
       <caption xml:lang="id">KTimeTracker</caption>
       <caption xml:lang="it">KTimeTracker</caption>
       <caption xml:lang="ka">KTimeTracker</caption>
       <caption xml:lang="ko">KTimetracker</caption>
+      <caption xml:lang="lt">KTimeTracker</caption>
+      <caption xml:lang="lv">KTimeTracker</caption>
       <caption xml:lang="nl">KTimeTracker</caption>
       <caption xml:lang="nn">KTimeTracker</caption>
       <caption xml:lang="pl">KTimeTracker</caption>
       <caption xml:lang="pt">KTimeTracker</caption>
       <caption xml:lang="pt-BR">KTimeTracker</caption>
       <caption xml:lang="ru">KTimeTracker</caption>
+      <caption xml:lang="sa">KTimeTracker</caption>
       <caption xml:lang="sk">KTimeTracker</caption>
       <caption xml:lang="sl">KTimeTracker</caption>
       <caption xml:lang="sv">Ktimerracker</caption>
       <caption xml:lang="tr">K Zamanölçer</caption>
       <caption xml:lang="uk">KTimeTracker</caption>
-      <caption xml:lang="x-test">xxKTimeTrackerxx</caption>
       <caption xml:lang="zh-CN">KTimeTracker</caption>
       <caption xml:lang="zh-TW">KTimeTracker</caption>
       <image>https://cdn.kde.org/screenshots/ktimetracker/ktimetracker.png</image>
     </screenshot>
   </screenshots>
-  <project_group>KDE</project_group>
-  <provides>
-    <binary>ktimetracker</binary>
-  </provides>
   <releases>
     <release version="5.1.0" date="2026-01-18"/>
+    <release version="6.0.0" date="2025-06-17"/>
     <release version="5.0.1" date="2019-12-21">
       <artifacts>
         <artifact type="binary" platform="x86_64-windows-msvc">

@@ -1,34 +1,19 @@
 /*
- * Copyright (C) 2003, 2004 by Mark Bucciarelli <mark@hubcapconsutling.com>
- * Copyright (C) 2019  Alexander Potashev <aspotashev@gmail.com>
- *
- *   This program is free software; you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation; either version 2 of the License, or
- *   (at your option) any later version.
- *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License along
- *   with this program; if not, write to the
- *      Free Software Foundation, Inc.
- *      51 Franklin Street, Fifth Floor
- *      Boston, MA  02110-1301  USA.
- *
- */
+    SPDX-FileCopyrightText: 2003, 2004 Mark Bucciarelli <mark@hubcapconsutling.com>
+    SPDX-FileCopyrightText: 2019 Alexander Potashev <aspotashev@gmail.com>
+
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #include "csvhistory.h"
 
-#include "ktimetrackerutility.h"
+#include "base/ktimetrackerutility.h"
 #include "ktt_debug.h"
 #include "model/projectmodel.h"
 #include "model/task.h"
 #include "model/tasksmodel.h"
 
-static int64_t todaySeconds(const QDate &date, const KCalCore::Event::Ptr &event)
+static int64_t todaySeconds(const QDate &date, const KCalendarCore::Event::Ptr &event)
 {
     if (!event) {
         return 0;
@@ -71,7 +56,7 @@ static int64_t todaySeconds(const QDate &date, const KCalCore::Event::Ptr &event
     return secondsToAdd;
 }
 
-QString exportCSVHistoryToString(ProjectModel *projectModel, const ReportCriteria &rc)
+QString exportCSVHistoryToString(ProjectModel *projectModel, Task *currentItem, const ReportCriteria &rc)
 {
     const QDate &from = rc.from;
     const QDate &to = rc.to;
@@ -83,12 +68,21 @@ QString exportCSVHistoryToString(ProjectModel *projectModel, const ReportCriteri
 
     QString retval;
 
-    // Step 1: Prepare two hashmaps:
+    // Step 1: Determine tasks to export
+    QList<Task *> tasks;
+
+    if (!rc.allTasks && currentItem) {
+        tasks = currentItem->selfAndDescendants();
+    } else {
+        tasks = projectModel->tasksModel()->getAllTasks();
+    }
+
+    qCDebug(KTT_LOG) << "Tasks count: " << tasks.size();
+
+    // Step 2: Prepare two hashmaps:
     // * "uid -> seconds each day": used while traversing events, as uid is their id
     //                              "seconds each day" are stored in a vector
     // * "name -> uid", ordered by name: used when creating the csv file at the end
-    auto tasks = projectModel->tasksModel()->getAllTasks();
-    qCDebug(KTT_LOG) << "Tasks count: " << tasks.size();
     for (Task *task : tasks) {
         qCDebug(KTT_LOG) << ", Task Name: " << task->name() << ", UID: " << task->uid();
         // uid -> seconds each day
@@ -120,7 +114,7 @@ QString exportCSVHistoryToString(ProjectModel *projectModel, const ReportCriteri
 
     std::unique_ptr<FileCalendar> calendar = projectModel->asCalendar(QUrl());
 
-    // Step 2: For each date, get the events and calculate the seconds
+    // Step 3: For each date, get the events and calculate the seconds
     // Store the seconds using secsForUid hashmap, so we don't need to translate
     // uids We rely on rawEventsForDate to get the events
     qCDebug(KTT_LOG) << "Let's iterate for each date: ";
@@ -132,13 +126,17 @@ QString exportCSVHistoryToString(ProjectModel *projectModel, const ReportCriteri
 
         qCDebug(KTT_LOG) << mdate.toString();
         for (const auto &event : calendar->rawEventsForDate(mdate)) {
+            const int64_t todaySecondsValue = todaySeconds(mdate, event);
             qCDebug(KTT_LOG) << "Summary: " << event->summary() << ", Related to uid: " << event->relatedTo();
-            qCDebug(KTT_LOG) << "Today's seconds: " << todaySeconds(mdate, event);
-            secsForUid[event->relatedTo()][from.daysTo(mdate)] += todaySeconds(mdate, event);
+            qCDebug(KTT_LOG) << "Today's seconds: " << todaySecondsValue;
+            const QString &uid = event->relatedTo();
+            if (secsForUid.contains(uid)) {
+                secsForUid[uid][from.daysTo(mdate)] += todaySecondsValue;
+            }
         }
     }
 
-    // Step 3: For each task, generate the matching row for the CSV file
+    // Step 4: For each task, generate the matching row for the CSV file
     // We use the two hashmaps to have direct access using the task name
 
     // First CSV file line
@@ -156,7 +154,7 @@ QString exportCSVHistoryToString(ProjectModel *projectModel, const ReportCriteri
     while (nameUid.hasNext()) {
         nameUid.next();
         retval.append(rc.quote + nameUid.key() + rc.quote);
-        qCDebug(KTT_LOG) << nameUid.key() << ": " << nameUid.value() <<  Qt::endl;
+        qCDebug(KTT_LOG) << nameUid.key() << ": " << nameUid.value() << Qt::endl;
 
         for (int day = 0; day < intervalLength; day++) {
             qCDebug(KTT_LOG) << "Secs for day " << day << ":" << secsForUid[nameUid.value()][day];

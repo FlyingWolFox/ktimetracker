@@ -4,8 +4,9 @@
 include:
   - project: sysadmin/ci-utilities
     file:
-      - /gitlab-templates/linux.yml
-      #- /gitlab-templates/freebsd.yml
-      - /gitlab-templates/windows.yml
-      - /gitlab-templates/craft-windows-x86-64.yml
-      - /gitlab-templates/craft-windows-mingw64.yml
+      - /gitlab-templates/flatpak.yml
+      - /gitlab-templates/linux-qt5.yml
+      - /gitlab-templates/reuse-lint.yml
+      - /gitlab-templates/freebsd-qt5.yml
+      - /gitlab-templates/windows-qt5.yml
+      - /gitlab-templates/craft-windows-x86-64-qt5.yml
