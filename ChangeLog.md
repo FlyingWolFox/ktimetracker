@@ -5,6 +5,32 @@ SPDX-FileCopyrightText: 2026 FlyingWolFox <49326973+FlyingWolFox@users.noreply.g
 SPDX-License-Identifier: CC-BY-SA-4.0
 -->
 
+KTimeTracker 5.2.0 (release date: 2026-03-07)
+--------
+
+- Check if the windows system is X11 before doing any X11-exclusive action
+  (no Wayland alternative is provided). This mostly affects desktop tracking
+- Add Flatpak support
+- Changed "Percent Complete" context menu to list percentages increments from 10% to 5%
+- Mark KTimeTracker as a single main window program. This allows desktop environments
+  to adjust their UI.
+- Restore the window when the application is launched second time. This makes it
+  accessible even if the system tray is missing.
+- Editing the times in the history dialogs no longer loses its format when editing.
+  You can also edit the seconds now.
+- The desktop entry installed on the application menu had a improper category.
+  To fix this:
+  - Remove the "Utility" category since that's not quite what it stands for
+    (Small utility application, "Accessories") according to the
+    [Desktop Menu specification](https://specifications.freedesktop.org/menu-spec/latest/category-registry.html).
+  - Use ProjectManagement instead of Monitor because it's an additional category based off Office
+  Fixes bug 506000
+- Fixed icon installation
+- Respect "Only Selected" when exporting "History as CSV"
+- Fix session time calculation that would sometimes be different than the sum of
+  the task times. BUG 508132
+- Fix some loss of precision when refreshing the task times. BUG 508132
+
 KTimeTracker 5.1.0 (release date: 2026-01-18)
 --------
 - Fixed "Bug 415499 - Cannot build on latest Ubuntu" (Ubuntu 20.04 Focal Fossa).
