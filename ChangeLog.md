@@ -4,6 +4,22 @@ SPDX-FileCopyrightText: 2026 FlyingWolFox <49326973+FlyingWolFox@users.noreply.g
 SPDX-License-Identifier: CC-BY-SA-4.0
 -->
 
+KTimeTracker 6.0.0-0fwf1 (release date: 2026-03-07)
+--------
+
+- The desktop entry installed on the application menu had a improper category.
+  To fix this:
+  - Remove the "Utility" category since that's not quite what it stands for
+    (Small utility application, "Accessories") according to the
+    [Desktop Menu specification](https://specifications.freedesktop.org/menu-spec/latest/category-registry.html).
+  - Use ProjectManagement instead of Monitor because it's an additional category based off Office
+  Fixes bug 506000
+- Fixed icon installation
+- Respect "Only Selected" when exporting "History as CSV"
+- Fix session time calculation that would sometimes be different than the sum of
+  the task times. BUG 508132
+- Fix some loss of precision when refreshing the task times. BUG 508132
+
 KTimeTracker 6.0.0 (release date: 2025-06-17)
 --------
 
