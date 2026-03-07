@@ -15,8 +15,8 @@ SPDX-License-Identifier: GPL-2.0-or-later
   <launchable type="desktop-id">org.kde.ktimetracker.desktop</launchable>
   <content_rating type="oars-1.1"/>
   <url type="homepage">https://apps.kde.org/ktimetracker</url>
-  <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=ktimetracker</url>
-  <url type="vcs-browser">https://invent.kde.org/pim/ktimetracker</url>
+  <url type="bugtracker">https://github.com/FlyingWolFox/ktimetracker/issues</url>
+  <url type="vcs-browser">https://github.com/FlyingWolFox/ktimetracker</url>
   <project_group>KDE</project_group>
   <provides>
     <binary>ktimetracker</binary>

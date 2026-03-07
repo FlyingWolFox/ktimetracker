@@ -1,10 +1,23 @@
 <!--
 # SPDX-FileCopyrightText: 2021 Alexander Potashev <aspotashev@gmail.com>
 # SPDX-FileCopyrightText: 2024 Thiago Masato Costa Sueto <thiago.sueto@kde.org>
+# SPDX-FileCopyrightText: 2026 FlyingWolFox <49326973+FlyingWolFox@users.noreply.github.com>
 # SPDX-License-Identifier: CC-BY-SA-4.0
 -->
 
 # KTimeTracker
+
+KTimeTracker fork with continuing Qt5 support and more frequent releases.
+
+This fork keeps the `kf5` branch up to date with upstream master as best it can, dropping Qt6-only features and porting the rest. It also adds some features of my own, but these are also available in the master branch (Qt6).
+
+Qt5 releases will continue using the 5.x version namespace, while Qt6 releases will use <latest>+fwfX (e.g. 6.0.0+fwf1), debian style.
+
+Qt5 efforts are mostly to get stuff working on Linux Mint 22, based on ubuntu noble, and some debian packaging related stuff will be in the `kf5` branch. Qt6 efforts are mostly to get a version with the latest changes + some patches of my own, so I can use it on Windows.
+
+Original README:
+
+---
 
 ![pipeline](https://invent.kde.org/pim/ktimetracker/badges/master/pipeline.svg?ignore_skipped=true)
 
