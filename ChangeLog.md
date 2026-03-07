@@ -1,7 +1,39 @@
 <!--
 SPDX-FileCopyrightText: 2019 Alexander Potashev <aspotashev@gmail.com>
+SPDX-FileCopyrightText: 2026 FlyingWolFox <49326973+FlyingWolFox@users.noreply.github.com>
 SPDX-License-Identifier: CC-BY-SA-4.0
 -->
+
+KTimeTracker 6.0.0 (release date: 2025-06-17)
+--------
+
+- Fixed "Bug 417988 - Columns displayed do not match configuration"
+- Fixed time formatting in "Hours:Minutes" mode on 32 bit architectures
+- Fixed crashes when trying to open a corrupted .ics file
+- Fixed column time sorting. Sorting is now done numerically instead of lexicographically
+- Added the option to display the current task in the window title
+- Added the option to display the currently active tasks and the session times in
+  the window title instead of the currently opened ical file.
+- Exposed startNewSession via dbus
+- Added a new export type: CSV log of all entries
+  The new export type exports all entries, or all entries in a given time
+  period if specified, in CSV format.
+- Updated all icons in the app with the new Plasma design
+- Added translations
+- Removed file:// prefix from the ical file path shown in the window title
+- Fixed a possible crash related to idle time detection
+- Made some performance optimizations
+- Port to Qt6
+- Check if the windows system is X11 before doing any X11-exclusive action
+  (no Wayland alternative is provided). This mostly affects desktop tracking
+- Add Flatpak support
+- Changed "Percent Complete" context menu to list percentages increments from 10% to 5%
+- Mark KTimeTracker as a single main window program. This allows desktop environments
+  to adjust their UI.
+- Restore the window when the application is launched second time. This makes it
+  accessible even if the system tray is missing.
+- Editing the times in the history dialogs no longer loses its format when editing.
+  You can also edit the seconds now.
 
 KTimeTracker 5.0.1 (release date: 2019-12-21)
 --------
