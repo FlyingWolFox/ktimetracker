@@ -26,6 +26,7 @@
 
 #include "ktimetracker-version.h"
 #include "ktt_debug.h"
+#include "backports/kicontheme.h"
 #include "base/mainwindow.h"
 
 // Deliver the path/URL to the iCalendar file to be used
@@ -73,6 +74,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
 
+    KIconThemeBackport::initTheme();
     QApplication app(argc, argv);
     Q_INIT_RESOURCE(ktimetracker);
 #if HAVE_STYLE_MANAGER

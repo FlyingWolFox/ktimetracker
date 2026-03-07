@@ -5,6 +5,7 @@
 
 add_library(ktt-general STATIC) # Header only + kcfg + logging
 add_library(ktt-deps INTERFACE)
+add_library(ktt-backports STATIC)
 add_library(ktt-base STATIC)
 add_library(ktt-dialogs STATIC)
 add_library(ktt-export STATIC)
@@ -93,6 +94,7 @@ target_link_libraries(ktimetracker
     PRIVATE
     ktt-general
     ktt-deps
+    ktt-backports
     ktt-base
     ktt-export
     ktt-import
@@ -103,6 +105,7 @@ install(TARGETS ktimetracker ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES org.kde.ktimetracker.ktimetracker.xml DESTINATION ${KDE_INSTALL_DBUSINTERFACEDIR})
 install(PROGRAMS org.kde.ktimetracker.desktop DESTINATION ${KDE_INSTALL_APPDIR})
 
+add_subdirectory(backports)
 add_subdirectory(base)
 add_subdirectory(dialogs)
 add_subdirectory(export)
