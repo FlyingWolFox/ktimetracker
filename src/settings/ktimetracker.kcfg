@@ -80,5 +80,29 @@ SPDX-License-Identifier: GPL-2.0-or-later
     <entry name="lastExportLocation" type="Url">
       <default></default>
     </entry>
+    <entry name="rememberLastExportOptions" type="Bool">
+      <default>true</default>
+    </entry>
+    <entry name="lastExportReportType" type="Int">
+      <default>0</default>
+    </entry>
+    <entry name="lastExportDecimalMinutes" type="Bool">
+      <default>true</default>
+    </entry>
+    <entry name="lastExportDelimiterType" type="Int">
+      <default>-1</default>
+    </entry>
+    <entry name="lastExportOtherDelimiter" type="String">
+      <default></default>
+    </entry>
+    <entry name="lastExportQuote" type="String">
+      <default>"</default>
+    </entry>
+    <entry name="lastExportSessionTimes" type="Bool">
+      <default>false</default>
+    </entry>
+    <entry name="lastExportAllTasks" type="Bool">
+      <default>true</default>
+    </entry>
   </group>
 </kcfg>

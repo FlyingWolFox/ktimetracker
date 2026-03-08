@@ -24,6 +24,7 @@ Fork Features:
   lack a way to reveal them, unlike KDE
 - The export to file dialog remembers where you last saved, even after you
   restart KTimeTracker. Can be toggled off in the settings
+- The export dialog remembers the last used settings
 
 Original README:
 
