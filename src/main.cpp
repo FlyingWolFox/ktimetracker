@@ -106,6 +106,9 @@ int main(int argc, char *argv[])
     aboutData.addAuthor(i18nc("@info:credit", "Kalle Dalheimer"), i18nc("@info:credit", "Developer (1999-2000)"), QStringLiteral("kalle@kde.org"));
     aboutData.addAuthor(i18nc("@info:credit", "Allen Winter"), i18nc("@info:credit", "Developer"), QStringLiteral("winter@kde.org"));
     aboutData.addAuthor(i18nc("@info:credit", "David Faure"), i18nc("@info:credit", "Developer"), QStringLiteral("faure@kde.org"));
+    aboutData.addAuthor(i18nc("@info:credit", "FlyingWolFox"),
+                        i18nc("@info:credit", "Fork Developer"),
+                        QStringLiteral("49326973+FlyingWolFox@users.noreply.github.com"));
     KAboutData::setApplicationData(aboutData);
 
     KCrash::initialize();
