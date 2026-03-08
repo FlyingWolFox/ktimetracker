@@ -15,6 +15,11 @@ Qt5 releases will continue using the 5.x version namespace, while Qt6 releases w
 
 Qt5 efforts are mostly to get stuff working on Linux Mint 22, based on ubuntu noble, and some debian packaging related stuff will be in the `kf5` branch. Qt6 efforts are mostly to get a version with the latest changes + some patches of my own, so I can use it on Windows.
 
+Fork Features:
+
+- Releases are up to date with upstream: Latest features and fixes on both Qt5 and Qt6 versions
+- More frequent releases: New features and fixes are always available
+
 Original README:
 
 ---
