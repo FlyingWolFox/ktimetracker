@@ -5,6 +5,13 @@ SPDX-FileCopyrightText: 2026 FlyingWolFox <49326973+FlyingWolFox@users.noreply.g
 SPDX-License-Identifier: CC-BY-SA-4.0
 -->
 
+KTimeTracker 5.3.0 (release date: ?)
+--------
+
+- Add option to force the tray icon to be in the 'Active' state. This is useful
+  for desktop environments (like MATE) that automatically hide 'Passive' icons and
+  lack a way to reveal them, unlike KDE.
+
 KTimeTracker 5.2.0 (release date: 2026-03-07)
 --------
 

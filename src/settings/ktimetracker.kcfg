@@ -71,5 +71,8 @@ SPDX-License-Identifier: GPL-2.0-or-later
     <entry name="trayIcon" type="Bool">
       <default>true</default>
     </entry>
+    <entry name="trayIconActive" type="Bool">
+      <default>false</default>
+    </entry>
   </group>
 </kcfg>

@@ -22,6 +22,7 @@
 
 #include <KLocalizedString>
 
+#include "ktimetracker.h"
 #include "mainwindow.h"
 #include "model/task.h"
 #include "timetrackerwidget.h"
@@ -32,6 +33,9 @@ TrayIcon::TrayIcon(MainWindow *parent)
     Q_INIT_RESOURCE(pics);
 
     setObjectName(QStringLiteral("Ktimetracker Tray"));
+    if (KTimeTrackerSettings::trayIconActive()) {
+        setStatus(KStatusNotifierItem::Active);
+    }
 
     m_animation = new QMovie(QStringLiteral(":/pics/active-icon.gif"), QByteArray("GIF"), this);
     connect(m_animation, &QMovie::frameChanged, this, &TrayIcon::setActiveIcon);

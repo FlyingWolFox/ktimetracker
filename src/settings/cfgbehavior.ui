@@ -80,6 +80,16 @@ SPDX-License-Identifier: GPL-2.0-or-later
     </widget>
    </item>
    <item row="5" column="0">
+    <widget class="QCheckBox" name="kcfg_trayIconActive">
+     <property name="text">
+      <string>Keep the tray icon always active (hover for info)</string>
+     </property>
+     <property name="toolTip">
+      <string>&lt;p style="width: 350px;"&gt;Forces the system tray icon to be in the 'Active' state. This is useful for desktop environments (like MATE) that automatically hide 'Passive' icons and lack a way to reveal them, unlike KDE. Requires restarting KTimeTracker.&lt;/p&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0">
     <spacer>
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -95,5 +105,12 @@ SPDX-License-Identifier: GPL-2.0-or-later
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>kcfg_trayIcon</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>kcfg_trayIconActive</receiver>
+   <slot>setEnabled(bool)</slot>
+  </connection>
+ </connections>
 </ui>

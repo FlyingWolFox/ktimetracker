@@ -19,6 +19,9 @@ Fork Features:
 
 - Releases are up to date with upstream: Latest features and fixes on both Qt5 and Qt6 versions
 - More frequent releases: New features and fixes are always available
+- Option to force the tray icon to be in the 'Active' state. This is useful
+  for desktop environments (like MATE) that automatically hide 'Passive' icons and
+  lack a way to reveal them, unlike KDE
 
 Original README:
 
