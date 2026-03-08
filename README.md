@@ -22,6 +22,8 @@ Fork Features:
 - Option to force the tray icon to be in the 'Active' state. This is useful
   for desktop environments (like MATE) that automatically hide 'Passive' icons and
   lack a way to reveal them, unlike KDE
+- The export to file dialog remembers where you last saved, even after you
+  restart KTimeTracker. Can be toggled off in the settings
 
 Original README:
 

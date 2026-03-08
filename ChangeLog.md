@@ -11,6 +11,8 @@ KTimeTracker 5.3.0 (release date: ?)
 - Add option to force the tray icon to be in the 'Active' state. This is useful
   for desktop environments (like MATE) that automatically hide 'Passive' icons and
   lack a way to reveal them, unlike KDE.
+- The export to file dialog now remembers where you last saved, even after you
+  restart KTimeTracker. This can be toggled off in the settings.
 
 KTimeTracker 5.2.0 (release date: 2026-03-07)
 --------

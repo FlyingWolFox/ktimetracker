@@ -74,5 +74,11 @@ SPDX-License-Identifier: GPL-2.0-or-later
     <entry name="trayIconActive" type="Bool">
       <default>false</default>
     </entry>
+    <entry name="rememberLastExportLocation" type="Bool">
+      <default>true</default>
+    </entry>
+    <entry name="lastExportLocation" type="Url">
+      <default></default>
+    </entry>
   </group>
 </kcfg>
