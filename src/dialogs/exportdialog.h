@@ -45,6 +45,8 @@ public:
     ReportCriteria reportCriteria();
 
 private:
+    void saveOptions();
+
     Ui::ExportDialog ui;
     TaskView *m_taskView;
     ReportCriteria rc;

@@ -32,10 +32,59 @@ ExportDialog::ExportDialog(QWidget *parent, TaskView *taskView)
     // If decimal symbol is a comma, then default field separator to semi-colon.
     // In France and Germany, one-and-a-half is written as 1,5 not 1.5
     QString d = QLocale().decimalPoint();
+    qCDebug(KTT_LOG) << "Decimal symbol is:" << d;
+    // If decimal symbol is a comma, then default field separator to semi-colon.
+    // In France and Germany, one-and-a-half is written as 1,5 not 1.5
     if (QChar::fromLatin1(',') == d) {
         ui.radioSemicolon->setChecked(true);
     } else {
         ui.radioComma->setChecked(true);
+    }
+
+    if (KTimeTrackerSettings::rememberLastExportOptions()) {
+        switch (KTimeTrackerSettings::lastExportReportType()) {
+        case 0:
+            ui.radioTimesCsv->setChecked(true);
+            break;
+        case 1:
+            ui.radioHistoryCsv->setChecked(true);
+            break;
+        case 2:
+            ui.radioEventLogCsv->setChecked(true);
+            break;
+        case 3:
+            ui.radioTimesText->setChecked(true);
+            break;
+        }
+
+        ui.combodecimalminutes->setCurrentText(KTimeTrackerSettings::lastExportDecimalMinutes() ? i18nc("format to display times", "Decimal")
+                                                                                                : i18nc("format to display times", "Hours:Minutes"));
+
+        switch (KTimeTrackerSettings::lastExportDelimiterType()) {
+        case -1:
+            // Default, the code above has already set the delimiter based on the locale
+            break;
+        case 0:
+            ui.radioComma->setChecked(true);
+            break;
+        case 1:
+            ui.radioSemicolon->setChecked(true);
+            break;
+        case 2:
+            ui.radioTab->setChecked(true);
+            break;
+        case 3:
+            ui.radioSpace->setChecked(true);
+            break;
+        case 4:
+            ui.radioOther->setChecked(true);
+            ui.txtOther->setText(KTimeTrackerSettings::lastExportOtherDelimiter());
+            break;
+        }
+
+        ui.cboQuote->setCurrentText(KTimeTrackerSettings::lastExportQuote());
+        ui.combosessiontimes->setCurrentText(KTimeTrackerSettings::lastExportSessionTimes() ? i18n("Session Times") : i18n("Total Times"));
+        ui.comboalltasks->setCurrentText(KTimeTrackerSettings::lastExportAllTasks() ? i18n("All Tasks") : i18n("Selected Task"));
     }
 
     connect(ui.buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
@@ -71,6 +120,9 @@ void ExportDialog::enableTasksToExportQuestion()
 
 void ExportDialog::exportToClipboard()
 {
+    if (KTimeTrackerSettings::rememberLastExportOptions()) {
+        saveOptions();
+    }
     QString output = exportToString(m_taskView->storage()->projectModel(), m_taskView->tasksWidget()->currentItem(), reportCriteria());
     QApplication::clipboard()->setText(output);
 }
@@ -86,6 +138,13 @@ void ExportDialog::exportToFile()
 
     if (KTimeTrackerSettings::rememberLastExportLocation()) {
         KTimeTrackerSettings::setLastExportLocation(url.adjusted(QUrl::RemoveFilename));
+    }
+
+    if (KTimeTrackerSettings::rememberLastExportOptions()) {
+        saveOptions();
+    }
+
+    if (KTimeTrackerSettings::rememberLastExportLocation() || KTimeTrackerSettings::rememberLastExportOptions()) {
         KTimeTrackerSettings::self()->save();
     }
 
@@ -97,6 +156,42 @@ void ExportDialog::exportToFile()
     } else {
         KMessageBox::error(parentWidget(), i18n(err.toLatin1().constData()));
     }
+}
+
+void ExportDialog::saveOptions()
+{
+    int rt = 0;
+    if (ui.radioTimesCsv->isChecked()) {
+        rt = 0;
+    } else if (ui.radioHistoryCsv->isChecked()) {
+        rt = 1;
+    } else if (ui.radioEventLogCsv->isChecked()) {
+        rt = 2;
+    } else if (ui.radioTimesText->isChecked()) {
+        rt = 3;
+    }
+    KTimeTrackerSettings::setLastExportReportType(rt);
+
+    KTimeTrackerSettings::setLastExportDecimalMinutes(ui.combodecimalminutes->currentText() == i18nc("format to display times", "Decimal"));
+
+    int dt = 0;
+    if (ui.radioComma->isChecked()) {
+        dt = 0;
+    } else if (ui.radioSemicolon->isChecked()) {
+        dt = 1;
+    } else if (ui.radioTab->isChecked()) {
+        dt = 2;
+    } else if (ui.radioSpace->isChecked()) {
+        dt = 3;
+    } else if (ui.radioOther->isChecked()) {
+        dt = 4;
+        KTimeTrackerSettings::setLastExportOtherDelimiter(ui.txtOther->text());
+    }
+    KTimeTrackerSettings::setLastExportDelimiterType(dt);
+
+    KTimeTrackerSettings::setLastExportQuote(ui.cboQuote->currentText());
+    KTimeTrackerSettings::setLastExportSessionTimes(i18n("Session Times") == ui.combosessiontimes->currentText());
+    KTimeTrackerSettings::setLastExportAllTasks(i18n("All Tasks") == ui.comboalltasks->currentText());
 }
 
 ReportCriteria ExportDialog::reportCriteria()

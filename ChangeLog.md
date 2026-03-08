@@ -9,6 +9,8 @@ KTimeTracker 6.0.0-0fwf2 (release date: ?)
 
 - The export to file dialog now remembers where you last saved, even after you
   restart KTimeTracker. This can be toggled off in the settings.
+- The export dialog now remembers the last used settings. This can be toggled off
+  in the settings.
 
 KTimeTracker 6.0.0-0fwf1 (release date: 2026-03-07)
 --------
