@@ -16,6 +16,7 @@
 
 #include "base/taskview.h"
 #include "export/export.h"
+#include "ktimetracker.h"
 #include "ktt_debug.h"
 #include "widgets/taskswidget.h"
 
@@ -76,9 +77,16 @@ void ExportDialog::exportToClipboard()
 
 void ExportDialog::exportToFile()
 {
-    const QUrl &url = QFileDialog::getSaveFileUrl(this, i18nc("@title:window", "Export to File"));
+    QUrl lastUrl = KTimeTrackerSettings::rememberLastExportLocation() ? KTimeTrackerSettings::lastExportLocation() : QUrl();
+    qCDebug(KTT_LOG) << "lastExportLocation is" << lastUrl;
+    const QUrl &url = QFileDialog::getSaveFileUrl(this, i18nc("@title:window", "Export to File"), lastUrl);
     if (url.isEmpty()) {
         return;
+    }
+
+    if (KTimeTrackerSettings::rememberLastExportLocation()) {
+        KTimeTrackerSettings::setLastExportLocation(url.adjusted(QUrl::RemoveFilename));
+        KTimeTrackerSettings::self()->save();
     }
 
     QString output = exportToString(m_taskView->storage()->projectModel(), m_taskView->tasksWidget()->currentItem(), reportCriteria());

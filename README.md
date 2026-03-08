@@ -19,6 +19,8 @@ Fork Features:
 
 - Releases are up to date with upstream: Latest features and fixes on both Qt5 and Qt6 versions
 - More frequent releases: New features and fixes are always available
+- The export to file dialog remembers where you last saved, even after you
+  restart KTimeTracker. Can be toggled off in the settings
 
 Original README:
 
