@@ -25,6 +25,8 @@ Fork Features:
 - The export to file dialog remembers where you last saved, even after you
   restart KTimeTracker. Can be toggled off in the settings
 - The export dialog remembers the last used settings
+- When exporting with "History as CSV" or "Event Log as CSV", the "From:" date picker
+  will use the date of the oldest event by default instead of the current date.
 
 Original README:
 
