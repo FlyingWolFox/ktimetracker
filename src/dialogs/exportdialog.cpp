@@ -18,6 +18,7 @@
 #include "export/export.h"
 #include "ktimetracker.h"
 #include "ktt_debug.h"
+#include "model/eventsmodel.h"
 #include "widgets/taskswidget.h"
 
 ExportDialog::ExportDialog(QWidget *parent, TaskView *taskView)
@@ -28,6 +29,8 @@ ExportDialog::ExportDialog(QWidget *parent, TaskView *taskView)
     ui.setupUi(this);
 
     ui.previewText->setFont(QFontDatabase::systemFont(QFontDatabase::FixedFont));
+
+    ui.dtFrom->setDate(m_taskView->storage()->eventsModel()->earliestStartDate().date());
 
     // If decimal symbol is a comma, then default field separator to semi-colon.
     // In France and Germany, one-and-a-half is written as 1,5 not 1.5

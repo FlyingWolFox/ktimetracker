@@ -11,6 +11,8 @@ KTimeTracker 6.0.0-0fwf2 (release date: ?)
   restart KTimeTracker. This can be toggled off in the settings.
 - The export dialog now remembers the last used settings. This can be toggled off
   in the settings.
+- When exporting with "History as CSV" or "Event Log as CSV", the "From:" date picker
+  will use the date of the oldest event by default instead of the current date.
 
 KTimeTracker 6.0.0-0fwf1 (release date: 2026-03-07)
 --------

@@ -91,6 +91,17 @@ void EventsModel::addEvent(Event *event)
     m_events.append(event);
 }
 
+QDateTime EventsModel::earliestStartDate() const
+{
+    QDateTime earliest = QDateTime::currentDateTime();
+    for (const auto *event : m_events) {
+        if (event->dtStart() < earliest) {
+            earliest = event->dtStart();
+        }
+    }
+    return earliest;
+}
+
 static KCalendarCore::Event::Ptr baseEvent(const Task *task)
 {
     qCDebug(KTT_LOG) << "Entering function";

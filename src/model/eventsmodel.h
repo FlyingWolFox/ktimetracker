@@ -35,6 +35,11 @@ public:
     void addEvent(Event *event);
 
     /**
+     * @return the start date of the oldest event, or current date if no events.
+     */
+    QDateTime earliestStartDate() const;
+
+    /**
      * Log the change in a task's time.
      *
      * This is also called when a timer is stopped.
