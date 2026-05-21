@@ -1,0 +1,99 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: ktimetracker
+
+Files: *
+Copyright: 1997, Stephan Kulow <coolo@kde.org>
+           2003-2004, Mark Bucciarelli <mark@hubcapconsulting.com>
+           2003, Scott Monachello <smonach@cox.net>
+           2003, Tomas Pospisek <tpo@sourcepole.ch>
+           2004, 2007, 2009, Thorsten Staerk <dev@staerk.de>
+           2007, 2009, Mathias Soeken <msoeken@tzi.de>
+           2007, René Mérou <ochominutosdearco@gmail.com>
+           2009, Laurent Montel <montel@kde.org>
+           2012, Sérgio Martins <iamsergio@gmail.com>
+           2019, Alexander Potashev <aspotashev@gmail.com>
+           2026, FlyingWolFox <49326973+FlyingWolFox@users.noreply.github.com>
+License: GPL-2+ or GPL-2-or-GPL-3-or-GPL-KDE-eV-approved
+
+Files: src/backports/*
+Copyright: 2000, Geert Jansen <jansen@kde.org>
+           2000, Antonio Larrosa <larrosa@kde.org>
+           2026, FlyingWolFox <49326973+FlyingWolFox@users.noreply.github.com>
+License: LGPL-2
+
+Files: org.kde.ktimetracker.appdata.xml
+Copyright: 2019, Alexander Potashev <aspotashev@gmail.com>
+           2026, FlyingWolFox <49326973+FlyingWolFox@users.noreply.github.com>
+License: CC0-1.0
+
+Files: doc/*
+Copyright: 2000-2004, Jonathan Singer <jsinger@leeta.net>
+           2000-2004, Sirtaj Singh Kang <taj@kde.org>
+License: GFDL-1.2-without-invariant
+
+Files: debian/*
+Copyright: 2020, Pino Toscano <pino@debian.org>
+           2026, FlyingWolFox <49326973+FlyingWolFox@users.noreply.github.com>
+License: GPL-2+
+
+License: CC0-1.0
+ On Debian systems, the complete text of the CC0 1.0 License can be found in
+ `/usr/share/common-licenses/CC0-1.0'.
+
+License: GFDL-1.2-without-invariant
+ Permission is granted to copy, distribute and/or modify this document
+ under the terms of the GNU Free Documentation License, Version 1.2
+ or any later version published by the Free Software Foundation;
+ with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
+ Texts.  A copy of the license is included in the section entitled "GNU
+ Free Documentation License".
+ .
+ On Debian systems, the complete text of the GNU Free Documentation License
+ version 1.2 can be found in "/usr/share/common-licenses/GFDL-1.2"
+
+License: GPL-2+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published,
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ ․
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ ․
+ On Debian systems, the complete text of the GNU General Public
+ License Version 2 can be found in "/usr/share/common-licenses/GPL-2".
+
+License: GPL-2-or-GPL-3-or-GPL-KDE-eV-approved
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License as
+ published by the Free Software Foundation; either version 2 of
+ the License or (at your option) version 3 or any later version
+ accepted by the membership of KDE e.V. (or its successor approved
+ by the membership of KDE e.V.), which shall act as a proxy
+ defined in Section 14 of version 3 of the license.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ On Debian systems, the complete texts of the GNU General Public Licenses
+ version 2 and 3 can be found in "/usr/share/common-licenses/GPL-2" and
+ "/usr/share/common-licenses/GPL-3".
+
+License: LGPL-2
+ This library is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Library General Public
+ License as published by the Free Software Foundation; either
+ version 2 of the License, or (at your option) any later version.
+ .
+ This library is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Library General Public License for more details.
+ .
+ On Debian systems, the complete texts of the GNU General Public Licenses
+ version 2 and 3 can be found in "/usr/share/common-licenses/GPL-2" and
+ "/usr/share/common-licenses/LGPL-2".

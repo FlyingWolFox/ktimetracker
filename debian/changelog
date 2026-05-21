@@ -1,0 +1,60 @@
+ktimetracker (4:5.4.0) noble; urgency=medium
+
+  * Unofficial fork based on 5.0.1
+  * Included all changes of the kf5 branch
+  * Backported all changes from the master branch
+  * debian/patches: Drop patches, no longer applicable.
+  * Add option to force the tray icon to be in the 'Active' state. This is
+    useful for desktop environments (like MATE) that automatically hide
+    'Passive' icons and lack a way to reveal them, unlike KDE.
+  * The export to file dialog now remembers where you last saved, even after you
+    restart KTimeTracker. This can be toggled off in the settings.
+  * The export dialog now remembers the last used settings. This can be toggled
+    off in the settings.
+  * When exporting with "History as CSV" or "Event Log as CSV", the "From:" date
+    picker will use the date of the oldest event by default instead of the
+    current date.
+  * Event Log export now includes seconds in the "Start" and "End" columns
+
+ -- FlyingWolFox <49326973+FlyingWolFox@users.noreply.github.com>  Thu, 21 May 2026 17:18:00 -0300
+
+ktimetracker (4:5.0.1-3ubuntu3) noble; urgency=medium
+
+  * No-change rebuild for CVE-2024-3094
+
+ -- William Grant <wgrant@ubuntu.com>  Mon, 01 Apr 2024 17:48:23 +1100
+
+ktimetracker (4:5.0.1-3ubuntu2) noble; urgency=medium
+
+  * No-change rebuild against libqt5core5t64
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Fri, 15 Mar 2024 05:25:11 +0000
+
+ktimetracker (4:5.0.1-3ubuntu1) lunar; urgency=medium
+
+  * Disable unreliable tests for now.
+
+ -- Rik Mills <rikmills@kde.org>  Tue, 22 Nov 2022 06:58:19 +0000
+
+
+ktimetracker (4:5.0.1-3) unstable; urgency=medium
+
+  * Disable the fixfilepath reproducibility feature, as it breaks
+    QFINDTESTDATA. (Closes: #980681)
+  * Bump Standards-Version to 4.5.1, no changes required.
+
+ -- Pino Toscano <pino@debian.org>  Thu, 21 Jan 2021 11:59:34 +0100
+
+ktimetracker (4:5.0.1-2) unstable; urgency=medium
+
+  * Backport upstream commit 310c0fee25f142c6f6a0e7a0b4445af2e8785c79 to fix
+    formatTime() on 32bit architectures; patch
+    upstream_Fix-formatTime-in-non-decimal-mode-on-32bit-archs.patch.
+
+ -- Pino Toscano <pino@debian.org>  Wed, 21 Oct 2020 11:11:09 +0200
+
+ktimetracker (4:5.0.1-1) unstable; urgency=medium
+
+  * Initial release as independent application.
+
+ -- Pino Toscano <pino@debian.org>  Tue, 20 Oct 2020 10:56:01 +0200

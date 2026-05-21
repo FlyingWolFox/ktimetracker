@@ -1,0 +1,8 @@
+#!/bin/sh
+
+set -e
+
+cd test
+# TODO file watching seems broken
+rm test_refresh_on_change.py
+xvfb-run -a pytest-3 -v

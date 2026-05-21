@@ -1,0 +1,42 @@
+Source: ktimetracker
+Section: kde
+Priority: optional
+Maintainer: FlyingWolFox <49326973+FlyingWolFox@users.noreply.github.com>
+XSBC-Original-Maintainer: Uubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+X-Original-Debian-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
+XSBC-Uploaders: Pino Toscano <pino@debian.org>,
+Build-Depends: cmake (>= 3.16~),
+               debhelper-compat (= 13),
+               extra-cmake-modules (>= 5.101.0~),
+               gettext,
+               libkf5calendarcore-dev (>= 5:5.101.0~),
+               libkf5config-dev (>= 5.101.0~),
+               libkf5configwidgets-dev (>= 5.101.0~),
+               libkf5crash-dev (>= 5.101.0~),
+               libkf5dbusaddons-dev (>= 5.101.0~),
+               libkf5doctools-dev (>= 5.101.0~),
+               libkf5i18n-dev (>= 5.101.0~),
+               libkf5idletime-dev (>= 5.101.0~),
+               libkf5jobwidgets-dev (>= 5.101.0~),
+               libkf5kio-dev (>= 5.101.0~),
+               libkf5notifications-dev (>= 5.101.0~),
+               libkf5textwidgets-dev (>= 5.101.0~),
+               libkf5windowsystem-dev (>= 5.101.0~),
+               libkf5xmlgui-dev (>= 5.101.0~),
+               pkg-kde-tools (>= 0.15.16),
+               qtbase5-dev (>= 5.14.0~),
+               xauth,
+               xvfb,
+Standards-Version: 4.7.2
+Rules-Requires-Root: no
+Homepage: https://userbase.kde.org/KTimeTracker
+Vcs-Git: https://github.com/FlyingWolFox/ktimetracker.git
+Vcs-Browser: https://github.com/FlyingWolFox/ktimetracker
+
+Package: ktimetracker
+Section: utils
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: time tracker tool
+ KTimetracker is a time tracker for busy people who need to keep track
+ of the amount of time they spend on various tasks.
