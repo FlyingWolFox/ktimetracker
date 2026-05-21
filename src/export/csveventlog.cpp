@@ -18,7 +18,7 @@ QString exportCSVEventLogToString(ProjectModel *projectModel, const ReportCriter
     const QDate &to = rc.to;
     QString delim = rc.delimiter;
     const QString cr = QStringLiteral("\n");
-    const QString dateTimeFormat = QStringLiteral("yyyy-MM-dd HH:mm");
+    const QString dateTimeFormat = QStringLiteral("yyyy-MM-dd HH:mm:ss");
     QStringList events;
     QString row;
     QString header;
