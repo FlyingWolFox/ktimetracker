@@ -4,6 +4,11 @@ SPDX-FileCopyrightText: 2026 FlyingWolFox <49326973+FlyingWolFox@users.noreply.g
 SPDX-License-Identifier: CC-BY-SA-4.0
 -->
 
+KTimeTracker 6.0.0-0fwf2 (release date: ?)
+--------
+
+- Event Log export now includes seconds in the "Start" and "End" columns
+
 KTimeTracker 6.0.0-0fwf1 (release date: 2026-03-07)
 --------
 
