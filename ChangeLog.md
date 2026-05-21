@@ -13,6 +13,7 @@ KTimeTracker 6.0.0-0fwf2 (release date: ?)
   in the settings.
 - When exporting with "History as CSV" or "Event Log as CSV", the "From:" date picker
   will use the date of the oldest event by default instead of the current date.
+- Event Log export now includes seconds in the "Start" and "End" columns
 
 KTimeTracker 6.0.0-0fwf1 (release date: 2026-03-07)
 --------
